@@ -57,7 +57,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
         <QueryClientProvider client={queryClient}>
           <NuqsAdapter>{children}</NuqsAdapter>
 
-          <ReactQueryDevtools />
+          {/* <ReactQueryDevtools />is */}
           <Toaster richColors />
         </QueryClientProvider>
       </AuthUIProvider>
