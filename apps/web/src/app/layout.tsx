@@ -19,8 +19,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: `${env.NEXT_PUBLIC_PROJECT_NAME} - Short Tagline`,
-  description: "Short Description",
+  title: "Discord Utils - Essential Tools for Discord Communities",
+  description: "Essential tools for Discord server owners and developers. Build embeds, generate timestamps, preview markdown, and more.",
 };
 
 export default async function RootLayout({
@@ -34,7 +34,7 @@ export default async function RootLayout({
   )?.value;
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="dark" suppressHydrationWarning>
       <head>
         <script
           defer
@@ -48,7 +48,7 @@ export default async function RootLayout({
       >
         <Providers>
           <div className="flex min-h-screen flex-col">
-            <Header isAuthenticated={!!session} />
+            <Header />
             <main className="flex-1">{children}</main>
             <Footer />
           </div>

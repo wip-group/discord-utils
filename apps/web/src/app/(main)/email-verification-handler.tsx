@@ -1,8 +1,8 @@
 "use client";
 
-import { authClient } from "@/lib/auth-client";
 import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
+import { authClient } from "@/lib/auth-client";
 
 export function EmailVerificationHandler() {
   const searchParams = useSearchParams();
@@ -10,7 +10,7 @@ export function EmailVerificationHandler() {
 
   useEffect(() => {
     const token = searchParams.get("email");
-    
+
     if (!token) {
       return;
     }
@@ -37,4 +37,4 @@ export function EmailVerificationHandler() {
   }, [searchParams, refetch]);
 
   return null; // This component doesn't render anything
-} 
+}

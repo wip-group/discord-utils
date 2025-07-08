@@ -1,6 +1,6 @@
-import { protectedProcedure, publicProcedure, router } from "../lib/trpc";
-import { add, formatNumber, addAndFormat } from "@repo/shared";
+import { add, addAndFormat } from "@repo/shared";
 import { z } from "zod";
+import { protectedProcedure, publicProcedure, router } from "../lib/trpc";
 
 export const appRouter = router({
   healthCheck: publicProcedure.query(({ ctx }) => {
@@ -21,7 +21,7 @@ export const appRouter = router({
         a: z.number(),
         b: z.number(),
         decimals: z.number().optional(),
-      })
+      }),
     )
     .query(({ input }) => {
       return {

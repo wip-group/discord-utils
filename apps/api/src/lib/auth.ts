@@ -4,7 +4,7 @@ import { database } from "@/db/database";
 import { env } from "@/env";
 import { sendResetPasswordEmail, sendVerificationEmail } from "./email";
 
-const db = database.getClient().db()
+const db = database.getClient().db();
 
 export const auth: ReturnType<typeof betterAuth> = betterAuth({
   database: mongodbAdapter(db),
@@ -19,7 +19,8 @@ export const auth: ReturnType<typeof betterAuth> = betterAuth({
         verificationUrl: resetUrl,
       });
 
-      if (result.error) return console.log("sendResetPasswordEmail Error: ", result.error);
+      if (result.error)
+        return console.log("sendResetPasswordEmail Error: ", result.error);
     },
   },
 

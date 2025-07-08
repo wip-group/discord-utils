@@ -2,8 +2,7 @@ import { createEnv } from "@t3-oss/env-core";
 import { z } from "zod/v4";
 
 export const env = createEnv({
-  server: {
-  },
+  server: {},
 
   /**
    * The prefix that client-side variables must have. This is enforced both at

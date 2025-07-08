@@ -2,7 +2,7 @@ import { EmailClient } from "@azure/communication-email";
 
 // Initialize Azure Communication Services Email client
 export const emailClient = new EmailClient(
-  Bun.env.AZURE_COMMUNICATION_CONNECTION_STRING!
+  Bun.env.AZURE_COMMUNICATION_CONNECTION_STRING!,
 );
 
 export const sendVerificationEmail = async ({
