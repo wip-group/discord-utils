@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { env } from "@/env";
-
+import Image from "next/image";
 
 export default function Header() {
   return (
@@ -11,11 +11,14 @@ export default function Header() {
         {/* Left: Logo */}
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center gap-2">
-            <div className="flex size-8 items-center justify-center rounded bg-primary">
-              <span className="font-bold text-lg text-primary-foreground">
-                {env.NEXT_PUBLIC_PROJECT_NAME.slice(0, 1)}
-              </span>
-            </div>
+            <Image
+              src="/logo.png" 
+              alt="Logo"
+              width={32}
+              height={32}
+              className="rounded-md"
+            />
+
             <p className="mb-0.5 font-semibold text-white text-xl">
               {env.NEXT_PUBLIC_HOSTNAME}
             </p>
