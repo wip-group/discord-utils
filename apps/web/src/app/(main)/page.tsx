@@ -83,7 +83,6 @@ const tools = [
     href: "/webhook-tester",
     icon: Zap,
     category: "Developer",
-    comingSoon: true,
   },
   {
     title: "Discord Server Listing",
