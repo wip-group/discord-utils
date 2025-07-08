@@ -30,9 +30,9 @@ export default function PfpGrabber() {
   return (
     <div className="container mx-auto max-w-4xl p-6">
       <div className="mb-8 space-y-2">
-        <h1 className="text-4xl font-bold">Discord PFP Grabber</h1>
+        <h1 className="text-4xl font-bold">Discord User Info</h1>
         <p className="text-lg text-muted-foreground">
-          Get the profile picture of any Discord user using their ID.
+          Get the information of any Discord user using their ID.
         </p>
       </div>
 
@@ -41,7 +41,7 @@ export default function PfpGrabber() {
           <div className="flex flex-col gap-2">
             <h2 className="text-lg font-semibold">User ID</h2>
             <p className="text-sm text-muted-foreground">
-              Enter the ID of the Discord user you want to get the profile picture of.
+              Enter the ID of the Discord user you want to get the information of.
               To get a user ID, enable developer mode on Discord,
               right-click on a user and select "Copy ID".
             </p>
