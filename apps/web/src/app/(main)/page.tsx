@@ -64,12 +64,11 @@ const tools = [
     comingSoon: true,
   },
   {
-    title: "Permission Calculator",
-    description: "Calculate Discord permission integers",
+    title: "Bot Invite Generator",
+    description: "Generate Discord bot invite links",
     href: "/permission-calculator",
     icon: Shield,
     category: "Server Setup",
-    comingSoon: true,
   },
   {
     title: "Snowflake Decoder",
