@@ -18,6 +18,7 @@ import {
   Search,
   Shield,
   Type,
+  User,
   Users,
   X,
   Zap,
@@ -93,6 +94,11 @@ const sidebarTools = [
     title: "Bot Token Checker",
     icon: AtSign,
     href: "/bot-token-checker",
+  },
+  {
+    title: "User Info",
+    icon: User,
+    href: "/user-info",
   },
 ];
 

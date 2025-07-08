@@ -1,3 +1,4 @@
+/*
 import { EmailClient } from "@azure/communication-email";
 
 // Initialize Azure Communication Services Email client
@@ -80,3 +81,5 @@ If you didn't request this reset, you can safely ignore this email.`,
 
   return {}; // Return empty object on success
 };
+
+*/

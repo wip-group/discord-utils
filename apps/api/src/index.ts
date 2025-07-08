@@ -30,3 +30,4 @@ const _app = new Elysia()
   .listen(3001, (server) => {
     console.log(`Server is running on http://localhost:${server.port}`);
   });
+  

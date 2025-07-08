@@ -1,6 +1,5 @@
-import { add, addAndFormat } from "@repo/shared";
-import { z } from "zod";
 import { protectedProcedure, publicProcedure, router } from "../lib/trpc";
+import { botRouter } from "./bot-router";
 
 export const appRouter = router({
   healthCheck: publicProcedure.query(({ ctx }) => {
@@ -15,20 +14,7 @@ export const appRouter = router({
       user: ctx.session.user,
     };
   }),
-  calculate: publicProcedure
-    .input(
-      z.object({
-        a: z.number(),
-        b: z.number(),
-        decimals: z.number().optional(),
-      }),
-    )
-    .query(({ input }) => {
-      return {
-        sum: add(input.a, input.b),
-        formatted: addAndFormat(input.a, input.b, input.decimals),
-      };
-    }),
+  bot: botRouter,
 });
 
 export type AppRouter = typeof appRouter;
