@@ -1,0 +1,37 @@
+{
+  "name": "Template",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "apps/*",
+      "packages/*"
+    ],
+    "catalog": {
+      "@trpc/client": "11.4.1",
+      "@trpc/server": "11.4.1",
+      "@trpc/tanstack-react-query": "11.4.1",
+      "zod": "3.25.67",
+      "better-auth": "1.2.9",
+      "@t3-oss/env-core": "0.13.6",
+      "superjson": "2.2.2"
+    }
+  },
+  "scripts": {
+    "check": "biome check --write .",
+    "check:unsafe": "biome check --write --unsafe .",
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "check-types": "turbo check-types",
+    "dev:native": "turbo -F native dev",
+    "start:api": "turbo start --filter=@repo/api",
+    "start:web": "turbo start --filter=@repo/web"
+  },
+  "devDependencies": {
+    "turbo": "^2.4.2",
+    "@biomejs/biome": "2.0.0"
+  },
+  "packageManager": "bun@1.2.16",
+  "dependencies": {
+    "@azure/communication-email": "^1.0.0"
+  }
+}

@@ -1,0 +1,22 @@
+---
+description: Stack architecture and technology overview
+globs: 
+alwaysApply: true
+---
+# Stack Architecture
+
+This is a Turborepo monorepo using:
+- **Runtime**: Bun
+- **Frontend**: Next.js 15 with App Router
+- **Backend**: Elysia with tRPC
+- **Auth**: Better Auth with MongoDB adapter
+- **Database**: MongoDB with Mongoose
+- **UI**: shadcn/ui components
+- **Styling**: TailwindCSS
+- **Linting/Formatting**: Biome (NOT Prettier)
+
+## Key Patterns
+- End-to-end type safety from MongoDB → Elysia/tRPC → Next.js
+- Shared packages for database models, UI components, and TypeScript configs
+- Environment validation with @t3-oss/env-core and Zod schemas
+- Middleware handles auth protection and optional slug rewriting

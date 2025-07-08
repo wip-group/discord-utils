@@ -1,0 +1,34 @@
+---
+description: Next.js App Router patterns and conventions for the web app
+globs: ["src/app/**/*", "src/components/**/*"]
+alwaysApply: false
+---
+
+# Next.js App Router Patterns
+
+## File Structure
+- Use App Router structure in `src/app/`
+- Group routes with parentheses: `(auth)`, `(main)`, `(legal)`
+- Place middleware at `src/middleware.ts`
+- Components in `src/components/` with subfolders for organization
+
+## Environment Variables
+- Validate environment variables in `src/env.ts` using @t3-oss/env-core
+- Client-side vars must have `NEXT_PUBLIC_` prefix
+- Import validated env as `import { env } from "@/env"`
+
+## Component Patterns
+- Use `"use client"` directive for client components
+- Prefer server components by default
+- Import UI components from `@repo/ui/components/*` or `@/components/ui`
+- Use Tailwind classes with automatic sorting via Biome
+
+## tRPC Integration
+- Configure tRPC client in `src/utils/trpc.ts`
+- Use tRPC React Query hooks for data fetching
+- Wrap app with tRPC provider in layout or providers component
+
+## Auth Integration
+- Use Better Auth React client from `src/lib/auth-client.ts`
+- Check auth state with Better Auth hooks
+- Protected routes handled by middleware, not component-level checks

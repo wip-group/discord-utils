@@ -1,0 +1,50 @@
+---
+description: Elysia backend patterns and tRPC integration
+globs: ["src/**/*"]
+alwaysApply: false
+---
+
+# Elysia Backend Patterns
+
+## Server Structure
+- Main server file typically in `src/index.ts`
+- tRPC integration via Elysia tRPC plugin
+- Better Auth integration for session handling
+- Environment validation in `src/env.ts`
+
+## tRPC Router Organization
+- Routers in `src/routers/` directory
+- Main router exports in `src/routers/index.ts`
+- Use procedure builders from `src/lib/trpc.ts`
+- Group related procedures in dedicated router files
+
+## Database Integration
+- Import models from `@repo/database` package
+- Use Mongoose with TypeScript for database operations
+- Don't duplicate schema definitions - use shared package models
+- Handle database connections through shared database package
+
+## Auth Integration
+- Better Auth server configuration in `src/lib/auth.ts`
+- Session validation in tRPC context via `protectedProcedure`
+- MongoDB adapter for Better Auth sessions
+- Trusted origins configuration for CORS
+
+## Example Router Pattern
+```typescript
+import { router, publicProcedure, protectedProcedure } from "@/lib/trpc";
+import { SomeModel } from "@repo/database";
+import { z } from "zod";
+
+export const exampleRouter = router({
+  // Public endpoint
+  getPublic: publicProcedure.query(() => {
+    return { message: "Hello world" };
+  }),
+  
+  // Protected endpoint
+  getUserData: protectedProcedure.query(async ({ ctx }) => {
+    return await SomeModel.findById(ctx.user.id);
+  }),
+});
+```

@@ -1,0 +1,36 @@
+---
+description: tRPC integration patterns and best practices
+globs: ["apps/api/src/routers/**/*", "apps/web/src/utils/trpc.ts"]
+alwaysApply: false
+---
+
+# tRPC Integration Patterns
+
+## Server-Side (API)
+- Server procedures live in `apps/api/src/routers/`
+- Add new routers to main router in `apps/api/src/routers/index.ts`
+- Use `protectedProcedure` for endpoints requiring authentication
+- Import procedure builders from `apps/api/src/lib/trpc.ts`
+
+## Client-Side (Web)
+- Frontend consumes APIs with full type inference via `apps/web/src/utils/trpc.ts`
+- Use tRPC React Query hooks for data fetching
+- Avoid manual API route handlers - use tRPC procedures instead
+- Don't directly import database models in frontend - use tRPC
+
+## Example Pattern
+```typescript
+// In router file
+export const exampleRouter = router({
+  getAll: publicProcedure.query(async () => {
+    return await SomeModel.find();
+  }),
+  
+  create: protectedProcedure
+    .input(z.object({ name: z.string() }))
+    .mutation(async ({ input, ctx }) => {
+      // ctx.user available in protected procedures
+      return await SomeModel.create(input);
+    }),
+});
+```

@@ -1,0 +1,37 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: ./apps/web/Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
+        NEXT_PUBLIC_WEBSITE_URL: ${NEXT_PUBLIC_WEBSITE_URL}
+        NEXT_PUBLIC_PROJECT_NAME: ${NEXT_PUBLIC_PROJECT_NAME}
+        NEXT_PUBLIC_HOSTNAME: ${NEXT_PUBLIC_HOSTNAME}
+        NEXT_PUBLIC_DISCORD_INVITE: ${NEXT_PUBLIC_DISCORD_INVITE}
+        NEXT_PUBLIC_NODE_ENV: ${NEXT_PUBLIC_NODE_ENV}
+    restart: always
+    ports:
+      - 3000
+    networks:
+      - app_network
+      - dokploy-network
+    depends_on:
+      - api
+
+  api:
+    build:
+      context: .
+      dockerfile: ./apps/api/Dockerfile
+    restart: always
+    ports:
+      - 3001
+    networks:
+      - app_network
+      - dokploy-network
+
+networks:
+  app_network:
+    driver: bridge
+  dokploy-network:
+    external: true

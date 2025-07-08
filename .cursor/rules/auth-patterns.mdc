@@ -1,0 +1,36 @@
+---
+description: Better Auth authentication patterns and middleware configuration
+globs: ["apps/web/src/middleware.ts", "apps/api/src/lib/auth.ts", "apps/web/src/lib/auth-client.ts"]
+alwaysApply: false
+---
+
+# Authentication Patterns
+
+## Better Auth Configuration
+- Server auth configured in `apps/api/src/lib/auth.ts` with MongoDB adapter
+- Client auth configured in `apps/web/src/lib/auth-client.ts`
+- Session validation uses `better-auth.session_token` cookie
+- Don't create custom auth logic - extend Better Auth configuration
+
+## Middleware Protection
+- Routes in `protectedRoutes` array require authentication
+- Routes in `unauthedOnlyRoutes` redirect authenticated users away
+- Middleware redirects to login with `?redirect` parameter for return navigation
+- Configure via `MIDDLEWARE_CONFIG` in `apps/web/src/middleware.ts`
+
+## Protected Procedures
+- Use `protectedProcedure` in tRPC routers for auth-required endpoints
+- Session context available as `ctx.user` in protected procedures
+- Check session validity via `protectedProcedure` builder in `apps/api/src/lib/trpc.ts`
+
+## Example Middleware Config
+```typescript
+const MIDDLEWARE_CONFIG = {
+  auth: {
+    protectedRoutes: ["/dashboard", "/profile", "/admin"],
+    unauthedOnlyRoutes: ["/auth/sign-in", "/auth/sign-up"],
+    loginPath: "/auth/sign-in",
+    defaultRedirect: "/dashboard"
+  }
+};
+```
