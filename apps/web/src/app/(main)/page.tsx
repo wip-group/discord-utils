@@ -12,7 +12,15 @@ import Image from "next/image";
 
 const featuredTools = [
   {
+    title: "Timestamp Generator",
+    description: "Generate Discord timestamps in various formats",
+    href: "/timestamp-generator",
+    icon: Clock,
+    category: "Messages",
+  },
+  {
     title: "Embed Builder",
+<<<<<<< HEAD
     description: "Create rich Discord embeds",
     icon: "🖼️",
     href: "/tools/embed-builder",
@@ -46,6 +54,57 @@ const featuredTools = [
     description: "Test webhook payloads",
     icon: "⚡",
     href: "/tools/webhook-tester",
+=======
+    description: "Create rich Discord embeds with live preview",
+    href: "/embed-builder",
+    icon: MessageSquare,
+    category: "Messages",
+    isNew: true,
+  },
+  {
+    title: "Bot Invite Generator",
+    description: "Generate Discord bot invite links",
+    href: "/permission-calculator",
+    icon: Shield,
+    category: "Server Setup",
+  },
+  {
+    title: "Markdown Preview",
+    description: "Preview Discord markdown formatting in real-time",
+    href: "/markdown-preview",
+    icon: Type,
+    category: "Messages",
+  },
+  {
+    title: "Webhook Tester",
+    description: "Test Discord webhooks with custom payloads",
+    href: "/webhook-tester",
+    icon: Zap,
+    category: "Developer",
+  },
+  {
+    title: "Snowflake Decoder",
+    description: "Decode Discord IDs to timestamps",
+    href: "/snowflake-decoder",
+    icon: Hash,
+    category: "Developer",
+  },
+  {
+    title: "Role Color Picker",
+    description: "Design and preview Discord role colors",
+    href: "/role-color-picker",
+    icon: Palette,
+    category: "Server Setup",
+    comingSoon: true,
+  },
+  {
+    title: "Discord Server Listing",
+    description: "Discover and list Discord servers",
+    href: "https://discordservers.gg",
+    icon: Globe,
+    category: "Server Setup",
+    external: true,
+>>>>>>> 3709fdb59c2671286fd8db06db10345591bcb6d1
   },
 ];
 
