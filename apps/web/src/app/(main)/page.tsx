@@ -53,6 +53,7 @@ const tools = [
     href: "/role-color-picker",
     icon: Palette,
     category: "Server Setup",
+    comingSoon: true,
   },
   {
     title: "Invite Tracker",
@@ -60,6 +61,7 @@ const tools = [
     href: "/invite-tracker",
     icon: LinkIcon,
     category: "Analytics",
+    comingSoon: true,
   },
   {
     title: "Permission Calculator",
