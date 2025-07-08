@@ -75,7 +75,6 @@ const tools = [
     href: "/snowflake-decoder",
     icon: Hash,
     category: "Developer",
-    comingSoon: true,
   },
   {
     title: "Webhook Tester",
