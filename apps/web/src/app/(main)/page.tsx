@@ -26,6 +26,13 @@ import Link from "next/link";
 
 const tools = [
   {
+    title: "Timestamp Generator",
+    description: "Generate Discord timestamps in various formats",
+    href: "/timestamp-generator",
+    icon: Clock,
+    category: "Messages",
+  },
+  {
     title: "Embed Builder",
     description: "Create rich Discord embeds with live preview",
     href: "/embed-builder",
@@ -34,11 +41,11 @@ const tools = [
     isNew: true,
   },
   {
-    title: "Timestamp Generator",
-    description: "Generate Discord timestamps in various formats",
-    href: "/timestamp-generator",
-    icon: Clock,
-    category: "Messages",
+    title: "Bot Invite Generator",
+    description: "Generate Discord bot invite links",
+    href: "/permission-calculator",
+    icon: Shield,
+    category: "Server Setup",
   },
   {
     title: "Markdown Preview",
@@ -48,12 +55,18 @@ const tools = [
     category: "Messages",
   },
   {
-    title: "Role Color Picker",
-    description: "Design and preview Discord role colors",
-    href: "/role-color-picker",
-    icon: Palette,
-    category: "Server Setup",
-    comingSoon: true,
+    title: "Webhook Tester",
+    description: "Test Discord webhooks with custom payloads",
+    href: "/webhook-tester",
+    icon: Zap,
+    category: "Developer",
+  },
+  {
+    title: "Snowflake Decoder",
+    description: "Decode Discord IDs to timestamps",
+    href: "/snowflake-decoder",
+    icon: Hash,
+    category: "Developer",
   },
   {
     title: "Invite Tracker",
@@ -64,25 +77,12 @@ const tools = [
     comingSoon: true,
   },
   {
-    title: "Bot Invite Generator",
-    description: "Generate Discord bot invite links",
-    href: "/permission-calculator",
-    icon: Shield,
+    title: "Role Color Picker",
+    description: "Design and preview Discord role colors",
+    href: "/role-color-picker",
+    icon: Palette,
     category: "Server Setup",
-  },
-  {
-    title: "Snowflake Decoder",
-    description: "Decode Discord IDs to timestamps",
-    href: "/snowflake-decoder",
-    icon: Hash,
-    category: "Developer",
-  },
-  {
-    title: "Webhook Tester",
-    description: "Test Discord webhooks with custom payloads",
-    href: "/webhook-tester",
-    icon: Zap,
-    category: "Developer",
+    comingSoon: true,
   },
   {
     title: "Discord Server Listing",
