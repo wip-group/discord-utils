@@ -1,18 +1,18 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { env } from "@/env";
-import Image from "next/image";
 
 export default function Header() {
   return (
     <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto max-w-7xl flex h-16 items-center px-4">
+      <div className="container mx-auto flex h-16 max-w-7xl items-center px-4">
         {/* Left: Logo */}
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center gap-2">
             <Image
-              src="/logo.png" 
+              src="/logo.png"
               alt="Logo"
               width={32}
               height={32}

@@ -1,3 +1,4 @@
+import { DiscordIcon } from "@daveyplate/better-auth-ui";
 import { Button } from "@repo/ui/components/button";
 import {
   Card,
@@ -7,20 +8,13 @@ import {
   CardTitle,
 } from "@repo/ui/components/card";
 import { MessageSquare } from "lucide-react";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
+import { env } from "@/env";
 
 const featuredTools = [
   {
-    title: "Timestamp Generator",
-    description: "Generate Discord timestamps in various formats",
-    href: "/timestamp-generator",
-    icon: Clock,
-    category: "Messages",
-  },
-  {
     title: "Embed Builder",
-<<<<<<< HEAD
     description: "Create rich Discord embeds",
     icon: "🖼️",
     href: "/tools/embed-builder",
@@ -54,96 +48,48 @@ const featuredTools = [
     description: "Test webhook payloads",
     icon: "⚡",
     href: "/tools/webhook-tester",
-=======
-    description: "Create rich Discord embeds with live preview",
-    href: "/embed-builder",
-    icon: MessageSquare,
-    category: "Messages",
-    isNew: true,
-  },
-  {
-    title: "Bot Invite Generator",
-    description: "Generate Discord bot invite links",
-    href: "/permission-calculator",
-    icon: Shield,
-    category: "Server Setup",
-  },
-  {
-    title: "Markdown Preview",
-    description: "Preview Discord markdown formatting in real-time",
-    href: "/markdown-preview",
-    icon: Type,
-    category: "Messages",
-  },
-  {
-    title: "Webhook Tester",
-    description: "Test Discord webhooks with custom payloads",
-    href: "/webhook-tester",
-    icon: Zap,
-    category: "Developer",
-  },
-  {
-    title: "Snowflake Decoder",
-    description: "Decode Discord IDs to timestamps",
-    href: "/snowflake-decoder",
-    icon: Hash,
-    category: "Developer",
-  },
-  {
-    title: "Role Color Picker",
-    description: "Design and preview Discord role colors",
-    href: "/role-color-picker",
-    icon: Palette,
-    category: "Server Setup",
-    comingSoon: true,
-  },
-  {
-    title: "Discord Server Listing",
-    description: "Discover and list Discord servers",
-    href: "https://discordservers.gg",
-    icon: Globe,
-    category: "Server Setup",
-    external: true,
->>>>>>> 3709fdb59c2671286fd8db06db10345591bcb6d1
   },
 ];
-
 
 export default async function Home() {
   return (
     <div className="flex-1">
       {/* Hero Section */}
-      <div className="bg-gradient-to-b from-card/50 to-background px-8 py-20 text-center">
-        <div className="mb-8 flex items-center justify-center gap-6">
-          <Image
-            src="/logo.png"
-            alt="Discord Utils"
-            width={120}
-            height={120}
-            className="rounded-2xl shadow-xl"
-          />
-          <h1 className="font-bold text-6xl tracking-tight">Discord Utils</h1>
+      <div className="px-8 py-12">
+        <div className="mx-auto max-w-5xl text-center">
+          <div className="mb-4 flex items-center justify-center gap-3">
+            <Image
+              src="/logo.png"
+              alt="Discord Utils"
+              width={64}
+              height={64}
+              className="rounded-xl"
+            />
+            <h1 className="font-bold text-4xl tracking-tight">Discord Utils</h1>
+          </div>
+          <p className="mx-auto max-w-2xl text-muted-foreground text-lg">
+            Community powered Discord utilities for developers, server owners and members.
+          </p>
         </div>
-        <p className="mx-auto max-w-2xl text-muted-foreground text-2xl">
-          Community powered Discord utilities for developers, server owners and members.
-        </p>
       </div>
 
       {/* Featured Tools Grid */}
-      <div className="px-8 py-12">
-        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="px-8 pb-12">
+        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {featuredTools.map((tool) => (
             <Link key={tool.href} href={tool.href}>
-              <Card className="group h-full bg-card/50 transition-all hover:bg-card hover:shadow-lg">
-                <CardHeader>
-                  <div className="mb-3 text-4xl">{tool.icon}</div>
-                  <CardTitle className="text-xl">{tool.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
+              <Card className="group hover:-translate-y-1 h-full transition-all hover:shadow-md">
+                <CardHeader className="p-4">
+                  <div className="mb-2 flex items-center gap-3">
+                    <span className="text-3xl">{tool.icon}</span>
+                    <CardTitle className="font-semibold text-lg">
+                      {tool.title}
+                    </CardTitle>
+                  </div>
                   <CardDescription className="text-sm">
                     {tool.description}
                   </CardDescription>
-                </CardContent>
+                </CardHeader>
               </Card>
             </Link>
           ))}
@@ -151,17 +97,11 @@ export default async function Home() {
       </div>
 
       {/* Discord Button */}
-      <div className="fixed right-6 bottom-6">
-        <Button
-          size="lg"
-          className="rounded-full bg-[#5865F2] text-white shadow-lg hover:bg-[#4752C4]"
-          asChild
-        >
-          <Link href="https://discord.gg/discord-utils" target="_blank">
-            <MessageSquare className="h-5 w-5" />
-          </Link>
-        </Button>
-      </div>
+      {/* <div className="fixed right-6 bottom-6">
+        <Link href={env.NEXT_PUBLIC_DISCORD_INVITE} target="_blank">
+          <DiscordIcon className="size-12" />
+        </Link>
+      </div> */}
     </div>
   );
 }

@@ -25,7 +25,7 @@ export const Footer = () => {
           href={env.NEXT_PUBLIC_DISCORD_INVITE}
           className="px-2 text-sm underline underline-offset-4 hover:no-underline"
         >
-          Contact Us
+          Join our Discord
         </Link>
       </div>
     </section>
