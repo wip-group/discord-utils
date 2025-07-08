@@ -18,6 +18,8 @@ import { Textarea } from "@repo/ui/components/textarea";
 import { Copy, FileText, Info } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { Input } from "@repo/ui/components/input";
+import { Label } from "@repo/ui/components/label";
 
 const exampleTexts = {
   basic: `**Bold text**
@@ -81,6 +83,8 @@ def greet(name):
 export function MarkdownPreview() {
   const [text, setText] = useState(exampleTexts.basic);
   const [activeTab, setActiveTab] = useState("preview");
+  const [customName, setCustomName] = useState("Username");
+  const [customImage, setCustomImage] = useState("");
 
   const copyText = () => {
     navigator.clipboard.writeText(text);
@@ -90,6 +94,21 @@ export function MarkdownPreview() {
   const loadExample = (example: keyof typeof exampleTexts) => {
     setText(exampleTexts[example]);
     toast.success("Example loaded!");
+  };
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      if (file.size > 5 * 1024 * 1024) { // 5MB limit
+        toast.error("Image size must be less than 5MB");
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setCustomImage(e.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const renderMarkdown = (content: string) => {
@@ -190,6 +209,29 @@ export function MarkdownPreview() {
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="username">Custom Username</Label>
+              <Input
+                id="username"
+                value={customName}
+                onChange={(e) => setCustomName(e.target.value)}
+                placeholder="Enter custom username"
+                className="mt-1.5"
+              />
+            </div>
+            <div>
+              <Label htmlFor="avatar">Custom Avatar</Label>
+              <Input
+                id="avatar"
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                className="mt-1.5"
+              />
+            </div>
+          </div>
+
           <div className="flex flex-wrap gap-2">
             <Button
               onClick={() => loadExample("basic")}
@@ -254,10 +296,20 @@ export function MarkdownPreview() {
           <CardContent>
             <div className="rounded-lg bg-[#36393f] p-4">
               <div className="flex items-start gap-3">
-                <div className="h-10 w-10 rounded-full bg-indigo-500" />
+                <div className="h-10 w-10 rounded-full overflow-hidden">
+                  {customImage ? (
+                    <img
+                      src={customImage}
+                      alt="Custom avatar"
+                      className="h-full w-full object-cover"
+                    />
+                  ) : (
+                    <div className="h-full w-full bg-indigo-500" />
+                  )}
+                </div>
                 <div className="flex-1">
                   <div className="mb-1 flex items-baseline gap-2">
-                    <span className="font-medium text-white">Username</span>
+                    <span className="font-medium text-white">{customName}</span>
                     <span className="text-[#72767d] text-xs">
                       Today at{" "}
                       {new Date().toLocaleTimeString("en-US", {

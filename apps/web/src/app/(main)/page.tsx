@@ -69,14 +69,6 @@ const tools = [
     category: "Developer",
   },
   {
-    title: "Invite Tracker",
-    description: "Track and analyze Discord invite links",
-    href: "/invite-tracker",
-    icon: LinkIcon,
-    category: "Analytics",
-    comingSoon: true,
-  },
-  {
     title: "Role Color Picker",
     description: "Design and preview Discord role colors",
     href: "/role-color-picker",
