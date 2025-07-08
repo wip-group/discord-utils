@@ -5,7 +5,7 @@ export const Footer = () => {
   return (
     <section className="relative z-10 px-4 py-6 text-center">
       <p className="text-sm text-white/30">
-        © {new Date().getFullYear()} {env.NEXT_PUBLIC_HOSTNAME}. A <Link href="https://wip.group" className="underline underline-offset-4 hover:no-underline" target="_blank">WIP Group, LLC</Link> company.
+        © {new Date().getFullYear()} {env.NEXT_PUBLIC_HOSTNAME}. A <Link href="https://wip.group" className="no-underline hover:underline hover:underline-offset-4" target="_blank">WIP Group, LLC</Link> company.
       </p>
       <div className="mt-2 flex justify-center gap-6 text-white/30">
         <Link
