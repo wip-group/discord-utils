@@ -7,7 +7,7 @@ import Image from "next/image";
 export default function Header() {
   return (
     <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="mx-auto flex h-16 items-center px-4 sm:container">
+      <div className="container mx-auto max-w-7xl flex h-16 items-center px-4">
         {/* Left: Logo */}
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center gap-2">
