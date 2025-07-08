@@ -12,7 +12,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@repo/ui/components/ta
 export default function PfpGrabber() {
   const [userId, setUserId] = useState<string>("");
   const [searchId, setSearchId] = useState<string>("");
-  const userInfo = useUserInfo(searchId);
+  const { data: userInfo, isLoading, error } = useUserInfo(searchId);
 
   const handleSearch = () => {
     if (!userId.trim()) {
@@ -54,12 +54,14 @@ export default function PfpGrabber() {
               onKeyDown={(e) => e.key === "Enter" && handleSearch()}
               className="max-w-md"
             />
-            <Button onClick={handleSearch}>Search</Button>
+            <Button onClick={handleSearch} disabled={isLoading}>
+              {isLoading ? "Searching..." : "Search"}
+            </Button>
           </div>
         </div>
       </Card>
 
-      {searchId && !userInfo && (
+      {isLoading && searchId && (
         <Card className="p-6">
           <div className="flex items-center gap-3 text-muted-foreground">
             <div className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
@@ -68,7 +70,29 @@ export default function PfpGrabber() {
         </Card>
       )}
 
-      {userInfo && (
+      {error && (
+        <Card className="p-6 border-destructive">
+          <div className="flex items-center gap-3 text-destructive">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="size-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="8" x2="12" y2="12" />
+              <line x1="12" y1="16" x2="12.01" y2="16" />
+            </svg>
+            Are you sure the user ID is correct? Please check and try again.
+          </div>
+        </Card>
+      )}
+
+      {userInfo && !error && (
         <Card className="overflow-hidden">
           <div className="border-b p-6">
             <div className="flex items-start gap-6">

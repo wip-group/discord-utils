@@ -14,10 +14,9 @@ export type DiscordUserInfo = {
   hasCustomAvatar: boolean
 };
 
-export const useUserInfo = (userId: string): DiscordUserInfo | null => {
-  const { data } = useQuery(trpc.bot.getUserInfo.queryOptions({ userId }));
-
-  if (!data) return null;
-
-  return data;
+export const useUserInfo = (userId: string) => {
+  return useQuery({
+    ...trpc.bot.getUserInfo.queryOptions({ userId }),
+    enabled: !!userId
+  });
 };

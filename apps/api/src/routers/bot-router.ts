@@ -1,6 +1,7 @@
 
 import { publicProcedure, router } from "../lib/trpc";
 import { z } from "zod";
+import { TRPCError } from "@trpc/server";
 
 type DiscordUserInfo = {
   id: string,
@@ -19,8 +20,18 @@ export const botRouter = router({
   })).query(async ({ input }) => {
     const BOT_TOKEN = Bun.env.BOT_TOKEN;
 
-    if (!BOT_TOKEN || !input.userId.trim()) {
-      return null;
+    if (!BOT_TOKEN) {
+      throw new TRPCError({
+        code: 'INTERNAL_SERVER_ERROR',
+        message: 'Bot token not configured',
+      });
+    }
+
+    if (!input.userId.trim()) {
+      throw new TRPCError({
+        code: 'BAD_REQUEST',
+        message: 'User ID is required',
+      });
     }
 
     try {
@@ -32,7 +43,16 @@ export const botRouter = router({
       });
 
       if (!response.ok) {
-        return null;
+        if (response.status === 404) {
+          throw new TRPCError({
+            code: 'NOT_FOUND',
+            message: 'User not found',
+          });
+        }
+        throw new TRPCError({
+          code: 'INTERNAL_SERVER_ERROR',
+          message: `Failed to fetch user info: ${response.statusText}`,
+        });
       }
 
       const data = await response.json();
@@ -56,8 +76,14 @@ export const botRouter = router({
         hasCustomAvatar: !!avatarHash
       } as DiscordUserInfo;
     } catch (error) {
+      if (error instanceof TRPCError) {
+        throw error;
+      }
       console.error('Error fetching user info:', error);
-      return null;
+      throw new TRPCError({
+        code: 'INTERNAL_SERVER_ERROR',
+        message: 'Failed to fetch user info',
+      });
     }
   }),
 });
