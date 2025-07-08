@@ -5,22 +5,22 @@ import { Input } from "@repo/ui/components/input";
 import { ScrollArea } from "@repo/ui/components/scroll-area";
 import { cn } from "@repo/ui/lib/utils";
 import {
-  Search,
-  MessageSquare,
-  Clock,
-  FileText,
-  Palette,
-  Shield,
-  Hash,
-  Zap,
-  LinkIcon,
-  Users,
-  ImageIcon,
-  Type,
-  Copy,
   AtSign,
+  Clock,
+  Copy,
+  FileText,
+  Hash,
+  ImageIcon,
+  LinkIcon,
   Menu,
+  MessageSquare,
+  Palette,
+  Search,
+  Shield,
+  Type,
+  Users,
   X,
+  Zap,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -32,67 +32,67 @@ const sidebarTools = [
   {
     title: "Embed Builder",
     icon: MessageSquare,
-    href: "/tools/embed-builder",
+    href: "/embed-builder",
   },
   {
     title: "Timestamp Generator",
     icon: Clock,
-    href: "/tools/timestamp-generator",
+    href: "/timestamp-generator",
   },
   {
     title: "Markdown Preview",
     icon: FileText,
-    href: "/tools/markdown-preview",
+    href: "/markdown-preview",
   },
   {
     title: "Role Color Picker",
     icon: Palette,
-    href: "/tools/role-color-picker",
+    href: "/role-color-picker",
   },
   {
     title: "Permission Calculator",
     icon: Shield,
-    href: "/tools/permission-calculator",
+    href: "/permission-calculator",
   },
   {
     title: "Snowflake Decoder",
     icon: Hash,
-    href: "/tools/snowflake-decoder",
+    href: "/snowflake-decoder",
   },
   {
     title: "Webhook Tester",
     icon: Zap,
-    href: "/tools/webhook-tester",
+    href: "/webhook-tester",
   },
-  {
-    title: "Invite Tracker",
-    icon: LinkIcon,
-    href: "/tools/invite-tracker",
-  },
+  // {
+  //   title: "Invite Tracker",
+  //   icon: LinkIcon,
+  //   href: "/invite-tracker",
+  // },
   {
     title: "User Lookup",
     icon: Users,
-    href: "/tools/user-lookup",
+    href: "/user-lookup",
   },
   {
     title: "Avatar Grabber",
     icon: ImageIcon,
-    href: "/tools/avatar-grabber",
+    href: "/avatar-grabber",
   },
   {
     title: "Message Formatter",
     icon: Type,
-    href: "/tools/message-formatter",
+    href: "/message-formatter",
   },
   {
     title: "Channel ID Generator",
     icon: Copy,
-    href: "/tools/channel-id-generator",
+    href: "/channel-id-generator",
   },
   {
     title: "Bot Token Checker",
     icon: AtSign,
-    href: "/tools/bot-token-checker",
+    href: "/bot-token-checker",
   },
 ];
 

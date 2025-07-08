@@ -1,53 +1,48 @@
-import { DiscordIcon } from "@daveyplate/better-auth-ui";
-import { Button } from "@repo/ui/components/button";
 import {
   Card,
-  CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
 } from "@repo/ui/components/card";
-import { MessageSquare } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { env } from "@/env";
 
 const featuredTools = [
   {
     title: "Embed Builder",
     description: "Create rich Discord embeds",
     icon: "🖼️",
-    href: "/tools/embed-builder",
+    href: "/embed-builder",
   },
   {
     title: "Timestamp Generator",
     description: "Convert real time to Discord time",
     icon: "🌞",
-    href: "/tools/timestamp-generator",
+    href: "/timestamp-generator",
   },
   {
     title: "Permission Calculator",
     description: "Calculate permission integers",
     icon: "🔢",
-    href: "/tools/permission-calculator",
+    href: "/permission-calculator",
   },
   {
     title: "Role Color Picker",
     description: "Design Discord role colors",
     icon: "🎨",
-    href: "/tools/role-color-picker",
+    href: "/role-color-picker",
   },
   {
     title: "Snowflake Decoder",
     description: "Decode Discord snowflake IDs",
     icon: "❄️",
-    href: "/tools/snowflake-decoder",
+    href: "/snowflake-decoder",
   },
   {
     title: "Webhook Tester",
     description: "Test webhook payloads",
     icon: "⚡",
-    href: "/tools/webhook-tester",
+    href: "/webhook-tester",
   },
 ];
 
@@ -67,8 +62,9 @@ export default async function Home() {
             />
             <h1 className="font-bold text-4xl tracking-tight">Discord Utils</h1>
           </div>
-          <p className="mx-auto max-w-2xl text-muted-foreground text-lg">
-            Community powered Discord utilities for developers, server owners and members.
+          <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
+            Community powered Discord utilities for developers, server owners
+            and members.
           </p>
         </div>
       </div>
@@ -95,13 +91,6 @@ export default async function Home() {
           ))}
         </div>
       </div>
-
-      {/* Discord Button */}
-      {/* <div className="fixed right-6 bottom-6">
-        <Link href={env.NEXT_PUBLIC_DISCORD_INVITE} target="_blank">
-          <DiscordIcon className="size-12" />
-        </Link>
-      </div> */}
     </div>
   );
 }
