@@ -330,10 +330,9 @@ export function WebhookTester() {
           </CardHeader>
           <CardContent>
             <Tabs value={activeTab} onValueChange={setActiveTab}>
-              <TabsList className="grid w-full grid-cols-3">
+              <TabsList className="grid w-full grid-cols-2">
                 <TabsTrigger value="simple">Simple</TabsTrigger>
                 <TabsTrigger value="embed">Embed</TabsTrigger>
-                <TabsTrigger value="json">JSON</TabsTrigger>
               </TabsList>
 
               <TabsContent value="simple" className="space-y-4">
@@ -365,30 +364,136 @@ export function WebhookTester() {
               </TabsContent>
 
               <TabsContent value="embed" className="space-y-4">
-                <div>
-                  <Label htmlFor="embedJson">Embed JSON</Label>
-                  <Textarea
-                    id="embedJson"
-                    value={
-                      payload.embeds && payload.embeds.length > 0
-                        ? JSON.stringify(payload.embeds[0], null, 2)
-                        : ""
-                    }
-                    onChange={(e) => {
-                      try {
-                        const embed = JSON.parse(e.target.value);
+                <div className="space-y-4">
+                  <div>
+                    <Label htmlFor="embedTitle">Title</Label>
+                    <Input
+                      id="embedTitle"
+                      value={payload.embeds?.[0]?.title || ""}
+                      onChange={(e) => {
+                        const currentEmbed = payload.embeds?.[0] || {};
                         setPayload({
                           ...payload,
-                          embeds: [embed],
+                          embeds: [{ ...currentEmbed, title: e.target.value }],
                         });
-                      } catch {
-                        // Invalid JSON, ignore
-                      }
-                    }}
-                    placeholder='{"title": "My Embed", "description": "Embed description", "color": 0x5865f2}'
-                    rows={8}
-                    className="font-mono text-sm"
-                  />
+                      }}
+                      placeholder="Embed title"
+                      maxLength={256}
+                    />
+                  </div>
+
+                  <div>
+                    <Label htmlFor="embedDescription">Description</Label>
+                    <Textarea
+                      id="embedDescription"
+                      value={payload.embeds?.[0]?.description || ""}
+                      onChange={(e) => {
+                        const currentEmbed = payload.embeds?.[0] || {};
+                        setPayload({
+                          ...payload,
+                          embeds: [{ ...currentEmbed, description: e.target.value }],
+                        });
+                      }}
+                      placeholder="Embed description"
+                      rows={3}
+                      maxLength={4096}
+                    />
+                  </div>
+
+                  <div>
+                    <Label htmlFor="embedUrl">URL</Label>
+                    <Input
+                      id="embedUrl"
+                      type="url"
+                      value={payload.embeds?.[0]?.url || ""}
+                      onChange={(e) => {
+                        const currentEmbed = payload.embeds?.[0] || {};
+                        setPayload({
+                          ...payload,
+                          embeds: [{ ...currentEmbed, url: e.target.value }],
+                        });
+                      }}
+                      placeholder="https://example.com"
+                    />
+                  </div>
+
+                  <div>
+                    <Label htmlFor="embedColor">Color</Label>
+                    <div className="flex gap-2">
+                      <Input
+                        id="embedColor"
+                        type="color"
+                        value={
+                          payload.embeds?.[0]?.color
+                            ? `#${payload.embeds[0].color.toString(16).padStart(6, '0')}`
+                            : "#5865F2"
+                        }
+                        onChange={(e) => {
+                          const currentEmbed = payload.embeds?.[0] || {};
+                          const color = Number.parseInt(e.target.value.replace("#", ""), 16);
+                          setPayload({
+                            ...payload,
+                            embeds: [{ ...currentEmbed, color }],
+                          });
+                        }}
+                        className="h-10 w-20"
+                      />
+                      <Input
+                        value={
+                          payload.embeds?.[0]?.color
+                            ? `#${payload.embeds[0].color.toString(16).padStart(6, '0')}`
+                            : "#5865F2"
+                        }
+                        onChange={(e) => {
+                          const currentEmbed = payload.embeds?.[0] || {};
+                          const color = Number.parseInt(e.target.value.replace("#", ""), 16);
+                          setPayload({
+                            ...payload,
+                            embeds: [{ ...currentEmbed, color }],
+                          });
+                        }}
+                        placeholder="#5865F2"
+                        className="flex-1"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <Label htmlFor="embedTimestamp">Timestamp</Label>
+                    <div className="flex gap-2">
+                      <Input
+                        id="embedTimestamp"
+                        type="datetime-local"
+                        value={
+                          payload.embeds?.[0]?.timestamp
+                            ? new Date(payload.embeds[0].timestamp).toISOString().slice(0, 16)
+                            : ""
+                        }
+                        onChange={(e) => {
+                          const currentEmbed = payload.embeds?.[0] || {};
+                          const timestamp = e.target.value ? new Date(e.target.value).toISOString() : undefined;
+                          setPayload({
+                            ...payload,
+                            embeds: [{ ...currentEmbed, timestamp }],
+                          });
+                        }}
+                        className="flex-1"
+                      />
+                      <Button
+                        onClick={() => {
+                          const currentEmbed = payload.embeds?.[0] || {};
+                          setPayload({
+                            ...payload,
+                            embeds: [{ ...currentEmbed, timestamp: new Date().toISOString() }],
+                          });
+                        }}
+                        size="sm"
+                        variant="outline"
+                      >
+                        Now
+                      </Button>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="flex flex-wrap gap-2">
@@ -406,36 +511,14 @@ export function WebhookTester() {
                   >
                     Load Rich Example
                   </Button>
-                </div>
-              </TabsContent>
-
-              <TabsContent value="json" className="space-y-4">
-                <div>
-                  <Label htmlFor="fullJson">Full Payload JSON</Label>
-                  <Textarea
-                    id="fullJson"
-                    value={JSON.stringify(payload, null, 2)}
-                    onChange={(e) => {
-                      try {
-                        const newPayload = JSON.parse(e.target.value);
-                        setPayload(newPayload);
-                      } catch {
-                        // Invalid JSON, ignore
-                      }
-                    }}
-                    placeholder='{"content": "Hello!", "embeds": []}'
-                    rows={12}
-                    className="font-mono text-sm"
-                  />
-                </div>
-
-                <div className="flex gap-2">
                   <Button onClick={copyPayload} size="sm" variant="outline">
                     <Copy className="mr-2 h-4 w-4" />
                     Copy Payload
                   </Button>
                 </div>
               </TabsContent>
+
+
             </Tabs>
 
             <Separator className="my-4" />
@@ -531,28 +614,7 @@ export function WebhookTester() {
           </CardContent>
         </Card>
 
-        {/* Help Card */}
-        <Card>
-          <CardHeader>
-            <CardTitle>How to use</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ol className="list-inside list-decimal space-y-2 text-sm text-muted-foreground">
-              <li>Get your webhook URL from Discord server settings</li>
-              <li>Paste the webhook URL in the configuration section</li>
-              <li>Configure your message content or embed</li>
-              <li>Click "Send Webhook" to test</li>
-              <li>View the response and timing information</li>
-            </ol>
-            <div className="mt-4 rounded-lg bg-blue-500/10 p-3">
-              <p className="text-blue-600 text-sm">
-                <strong>Note:</strong> Webhook URLs are sensitive. Never share
-                them publicly as they can be used to send messages to your
-                channel.
-              </p>
-            </div>
-          </CardContent>
-        </Card>
+
       </div>
     </div>
   );
