@@ -72,8 +72,8 @@ const sidebarTools = [
   // },
   {
     title: "User Lookup",
-    icon: Users,
-    href: "/user-lookup",
+    icon: User,
+    href: "/user-info",
   },
   {
     title: "Avatar Grabber",
@@ -94,11 +94,6 @@ const sidebarTools = [
     title: "Bot Token Checker",
     icon: AtSign,
     href: "/bot-token-checker",
-  },
-  {
-    title: "User Info",
-    icon: User,
-    href: "/user-info",
   },
 ];
 
