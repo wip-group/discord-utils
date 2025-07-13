@@ -76,19 +76,9 @@ const sidebarTools = [
     href: "/user-info",
   },
   {
-    title: "Avatar Grabber",
-    icon: ImageIcon,
-    href: "/avatar-grabber",
-  },
-  {
     title: "Message Formatter",
     icon: Type,
     href: "/message-formatter",
-  },
-  {
-    title: "Channel ID Generator",
-    icon: Copy,
-    href: "/channel-id-generator",
   },
   {
     title: "Bot Token Checker",
