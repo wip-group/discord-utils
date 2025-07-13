@@ -76,11 +76,6 @@ const sidebarTools = [
     href: "/user-info",
   },
   {
-    title: "Message Formatter",
-    icon: Type,
-    href: "/message-formatter",
-  },
-  {
     title: "Bot Token Checker",
     icon: AtSign,
     href: "/bot-token-checker",
