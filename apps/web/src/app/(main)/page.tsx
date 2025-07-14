@@ -29,10 +29,10 @@ const featuredTools = [
     href: "/timestamp-generator",
   },
   {
-    title: "Permission Calculator",
-    description: "Calculate permission integers",
+    title: "Bot Invite Generator",
+    description: "Generate Discord bot invite links with custom permissions",
     icon: Calculator,
-    href: "/permission-calculator",
+    href: "/bot-invite-generator",
   },
   {
     title: "Role Color Picker",

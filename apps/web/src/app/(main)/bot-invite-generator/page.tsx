@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { BotInviteGenerator } from "./permission-calculator";
+import { BotInviteGenerator } from "./bot-invite-generator";
 
 export const metadata: Metadata = {
   title: "Discord Bot Invite Generator - Discord Utils",

@@ -51,9 +51,9 @@ const sidebarTools = [
     href: "/role-color-picker",
   },
   {
-    title: "Permission Calculator",
+    title: "Bot Invite Generator",
     icon: Shield,
-    href: "/permission-calculator",
+    href: "/bot-invite-generator",
   },
   {
     title: "Snowflake Decoder",
