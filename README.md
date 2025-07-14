@@ -1,104 +1,61 @@
-# Fullstack Template
+# DiscordUtils
 
-A modern TypeScript fullstack template, featuring end-to-end type safety, authentication, and a modern development experience.
+A collection of Discord utilities useful for Developers, and server managers alike.
 
-## Features
+## Tech Stack
 
-- **TypeScript** - For type safety and improved developer experience
-- **Next.js** - Full-stack React framework
-- **TailwindCSS** - Utility-first CSS for rapid UI development
-- **shadcn/ui** - Reusable UI components
-- **Elysia** - Type-safe, high-performance framework
-- **tRPC** - End-to-end type-safe APIs
-- **Bun** - Runtime environment
-- **Mongoose** - TypeScript-first ORM
-- **MongoDB** - Database engine
-- **Authentication** - Email & password authentication with Better Auth
-- **Turborepo** - Optimized monorepo build system
-- **Biome** - Linting and formatting
+DiscordUtils leverages a powerful set of tools and libraries to deliver a seamless experience:
+
+- **Next.js** – ReactJS Framework that everyone and their mother knows
+- **TurboRepo** – Monorepo support for scalable code management by Vercel
+- **TailwindCSS** – Utility-first styling
+- **Radix UI + ShadCN** – Accessible and customizable UI components
+- **tRPC** – End-to-end type safety for API calls
+- **Elysia** – Type-safe, high-performance framework
+- **Zustand** – Lightweight global state management
+- **MongoDB** – Flexible, persistent NoSQL database
+- **Mongoose** – TypeScript-first ORM
+- **Biome** – Linting and formatting
+- **better-auth** – Authentication framework for TypeScript
+- **...** – Various other libraries such as Zod
+
+---
 
 ## Getting Started
 
-First, install the dependencies:
+Follow these steps to run **DiscordUtils** locally:
 
-```bash
-bun install
-```
+### Prerequisites
 
-Then, run the development server:
+Make sure you have 
+Make sure you have **Docker Desktop** (or a compatible container engine), and Bun installed and running.
 
-```bash
-bun dev
-```
+> *You don’t need to know Docker deeply — just have it running.*
 
-Open [http://localhost:3000](http://localhost:3000) in your browser to see the web application.
+### Project Setup
 
-The API is running at [http://localhost:3001](http://localhost:3001).
-
-
-## Project Structure
-
-```
-fullstack-template/
-├── apps/
-│   ├── web/                    # Next.js 15 frontend (App Router)
-│   └── api/                    # Elysia backend with tRPC
-├── packages/
-│   ├── database/               # Shared Mongoose models
-│   ├── ui/                     # Shared shadcn/ui components
-│   └── typescript-config/      # Shared TypeScript configs
-└── .cursor/
-    └── rules/                  # Cursor AI rules for development
-```
-
-## Available Scripts
-
-- `bun dev` - Start all applications in development mode
-- `bun build` - Build all applications for production
-- `turbo dev --filter=@repo/web` - Start only the Next.js frontend
-- `turbo dev --filter=@repo/api` - Start only the Elysia backend
-- `bun check-types` - Run TypeScript checking across monorepo
-- `bun check` - Run Biome formatting and linting
-
-## Environment Setup
-
-1. Copy `.env.example` to `.env` and configure:
+1. Clone the repository
    ```bash
-   cp .env.example .env
+   git clone https://github.com/wip-group/discordutils
    ```
 
-2. Required environment variables:
-   - `DATABASE_URL` - MongoDB connection string
-   - `REDIS_URL` - Redis connection string
-   - `BETTER_AUTH_SECRET` - Secret for auth sessions
-   - `NEXT_PUBLIC_WEBSITE_URL` - Frontend URL (dev: http://localhost:3000)
-   - `NEXT_PUBLIC_API_URL` - Backend URL (dev: http://localhost:3001)
+2. Open in your code editor
 
-## Key Features
+3. Install dependencies and run the app
+    ```bash
+    bun i        # Install dependencies
+    bun run db   # Setup MongoDB
+    bun run dev  # or just: bun dev
+    ```
 
-### Authentication
-- **Better Auth** integration with MongoDB adapter
-- Middleware-based route protection
-- Session management with secure cookies
-- Configurable protected and public routes
+4. Open https://localhost:3000. The api is hosted on https://localhost:3001.
 
-### Type Safety
-- End-to-end type safety from database to frontend
-- tRPC for type-safe API calls
-- Zod validation for environment variables and API inputs
-- Shared TypeScript configurations
+### Development Notes
 
-### Development Experience
-- Hot reload for both frontend and backend
-- Biome for fast formatting and linting
-- Turborepo for optimized monorepo builds
-- Cursor AI rules for intelligent code assistance
+- You only need to run all three commands once during setup.
+- On daily development, just use:
+    ```bash
+    bun run dev
+    ```
+- Re-run `bun i` when new dependencies are added.
 
-## Architecture
-
-- **Frontend**: Next.js 15 with App Router, shadcn/ui components
-- **Backend**: Elysia server with tRPC integration
-- **Database**: MongoDB with Mongoose ODM
-- **Auth**: Better Auth with session-based authentication
-- **Styling**: TailwindCSS with automatic class sorting
-- **Monorepo**: Turborepo with shared packages for code reuse
