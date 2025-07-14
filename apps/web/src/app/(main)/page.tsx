@@ -10,18 +10,13 @@ import {
   Calculator, 
   Palette, 
   Hash, 
-  Zap 
+  Zap,
+  FileText
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 const featuredTools = [
-  {
-    title: "Embed Builder",
-    description: "Create rich Discord embeds",
-    icon: ImageIcon,
-    href: "/embed-builder",
-  },
   {
     title: "Timestamp Generator",
     description: "Convert real time to Discord time",
@@ -35,10 +30,28 @@ const featuredTools = [
     href: "/bot-invite-generator",
   },
   {
-    title: "Role Color Picker",
-    description: "Design Discord role colors",
-    icon: Palette,
-    href: "/role-color-picker",
+    title: "User Lookup",
+    description: "Get Discord user info by ID",
+    icon: Palette, // You may want to use a more appropriate icon
+    href: "/user-info",
+  },
+  {
+    title: "Embed Builder",
+    description: "Create rich Discord embeds",
+    icon: ImageIcon,
+    href: "/embed-builder",
+  },
+  {
+    title: "Markdown Preview",
+    description: "Preview Discord markdown formatting",
+    icon: FileText,
+    href: "/markdown-preview",
+  },
+  {
+    title: "Webhook Tester",
+    description: "Test webhook payloads",
+    icon: Zap,
+    href: "/webhook-tester",
   },
   {
     title: "Snowflake Decoder",
@@ -47,10 +60,16 @@ const featuredTools = [
     href: "/snowflake-decoder",
   },
   {
-    title: "Webhook Tester",
-    description: "Test webhook payloads",
-    icon: Zap,
-    href: "/webhook-tester",
+    title: "Bot Token Checker",
+    description: "Verify your Discord bot token and get bot information",
+    icon: Calculator, // You may want to use a more appropriate icon
+    href: "/bot-token-checker",
+  },
+  {
+    title: "Role Color Picker",
+    description: "Design Discord role colors",
+    icon: Palette,
+    href: "/role-color-picker",
   },
 ];
 

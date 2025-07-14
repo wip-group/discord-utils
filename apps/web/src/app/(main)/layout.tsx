@@ -31,24 +31,9 @@ import { Footer } from "@/components/layout/footer";
 
 const sidebarTools = [
   {
-    title: "Embed Builder",
-    icon: MessageSquare,
-    href: "/embed-builder",
-  },
-  {
     title: "Timestamp Generator",
     icon: Clock,
     href: "/timestamp-generator",
-  },
-  {
-    title: "Markdown Preview",
-    icon: FileText,
-    href: "/markdown-preview",
-  },
-  {
-    title: "Role Color Picker",
-    icon: Palette,
-    href: "/role-color-picker",
   },
   {
     title: "Bot Invite Generator",
@@ -56,29 +41,39 @@ const sidebarTools = [
     href: "/bot-invite-generator",
   },
   {
-    title: "Snowflake Decoder",
-    icon: Hash,
-    href: "/snowflake-decoder",
+    title: "User Lookup",
+    icon: User,
+    href: "/user-info",
+  },
+  {
+    title: "Embed Builder",
+    icon: MessageSquare,
+    href: "/embed-builder",
+  },
+  {
+    title: "Markdown Preview",
+    icon: FileText,
+    href: "/markdown-preview",
   },
   {
     title: "Webhook Tester",
     icon: Zap,
     href: "/webhook-tester",
   },
-  // {
-  //   title: "Invite Tracker",
-  //   icon: LinkIcon,
-  //   href: "/invite-tracker",
-  // },
   {
-    title: "User Lookup",
-    icon: User,
-    href: "/user-info",
+    title: "Snowflake Decoder",
+    icon: Hash,
+    href: "/snowflake-decoder",
   },
   {
     title: "Bot Token Checker",
     icon: AtSign,
     href: "/bot-token-checker",
+  },
+  {
+    title: "Role Color Picker",
+    icon: Palette,
+    href: "/role-color-picker",
   },
 ];
 
