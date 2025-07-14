@@ -28,10 +28,10 @@ export default function PfpGrabber() {
   };
 
   return (
-    <div className="container mx-auto max-w-4xl p-6">
-      <div className="mb-8 space-y-2">
-        <h1 className="text-4xl font-bold">Discord User Info</h1>
-        <p className="text-lg text-muted-foreground">
+    <div className="container mx-auto max-w-7xl px-4 py-8">
+      <div className="mb-8">
+        <h1 className="mb-2 font-bold text-3xl">Discord User Info</h1>
+        <p className="text-muted-foreground">
           Get the information of any Discord user using their ID.
         </p>
       </div>

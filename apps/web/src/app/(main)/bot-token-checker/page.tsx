@@ -49,10 +49,10 @@ export default function BotTokenChecker() {
   };
 
   return (
-    <div className="container mx-auto max-w-4xl p-6">
-      <div className="mb-8 space-y-2">
-        <h1 className="text-4xl font-bold">Discord Bot Token Checker</h1>
-        <p className="text-lg text-muted-foreground">
+    <div className="container mx-auto max-w-7xl px-4 py-8">
+      <div className="mb-8">
+        <h1 className="mb-2 font-bold text-3xl">Discord Bot Token Checker</h1>
+        <p className="text-muted-foreground">
           Verify your Discord bot token and get bot information.
         </p>
       </div>

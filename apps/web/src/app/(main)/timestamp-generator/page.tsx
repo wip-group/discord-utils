@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function TimestampGeneratorPage() {
   return (
-    <div className="container mx-auto max-w-4xl px-4 py-8">
+    <div className="container mx-auto max-w-7xl px-4 py-8">
       <div className="mb-8">
         <h1 className="mb-2 font-bold text-3xl">Discord Timestamp Generator</h1>
         <p className="text-muted-foreground">
