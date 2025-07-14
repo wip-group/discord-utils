@@ -214,118 +214,70 @@ export function TimestampGenerator() {
   };
 
   return (
-    <div className="space-y-6">
-      {/* Date/Time Input */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Calendar className="h-5 w-5" />
-            Select Date & Time
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+    <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      {/* Left Column - Date/Time Input */}
+      <div className="space-y-6">
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Calendar className="h-5 w-5" />
+              Select Date & Time
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              <div>
+                <Label htmlFor="date">Date</Label>
+                <Input
+                  id="date"
+                  type="date"
+                  value={dateInput}
+                  onChange={(e) => handleDateChange(e.target.value)}
+                />
+              </div>
+              <div>
+                <Label htmlFor="time">Time</Label>
+                <Input
+                  id="time"
+                  type="time"
+                  value={timeInput}
+                  onChange={(e) => handleTimeChange(e.target.value)}
+                  step="1"
+                />
+              </div>
+            </div>
+
             <div>
-              <Label htmlFor="date">Date</Label>
-              <Input
-                id="date"
-                type="date"
-                value={dateInput}
-                onChange={(e) => handleDateChange(e.target.value)}
-              />
+              <Label htmlFor="timestamp">Unix Timestamp</Label>
+              <div className="flex gap-2">
+                <Input
+                  id="timestamp"
+                  type="number"
+                  value={timestamp}
+                  onChange={(e) => handleTimestampChange(e.target.value)}
+                  placeholder="1618934400"
+                />
+                <Button onClick={setToNow} variant="outline">
+                  <RefreshCw className="mr-2 h-4 w-4" />
+                  Now
+                </Button>
+              </div>
             </div>
-            <div>
-              <Label htmlFor="time">Time</Label>
-              <Input
-                id="time"
-                type="time"
-                value={timeInput}
-                onChange={(e) => handleTimeChange(e.target.value)}
-                step="1"
-              />
+
+            <div className="rounded-lg bg-muted p-4">
+              <p className="mb-1 text-muted-foreground text-sm">
+                Selected Date/Time:
+              </p>
+              <p className="font-mono text-[16px]">{selectedDate.toString()}</p>
             </div>
-          </div>
+          </CardContent>
+        </Card>
 
-          <div>
-            <Label htmlFor="timestamp">Unix Timestamp</Label>
-            <div className="flex gap-2">
-              <Input
-                id="timestamp"
-                type="number"
-                value={timestamp}
-                onChange={(e) => handleTimestampChange(e.target.value)}
-                placeholder="1618934400"
-              />
-              <Button onClick={setToNow} variant="outline">
-                <RefreshCw className="mr-2 h-4 w-4" />
-                Now
-              </Button>
-            </div>
-          </div>
-
-          <div className="rounded-lg bg-muted p-4">
-            <p className="mb-1 text-muted-foreground text-sm">
-              Selected DateTime:
-            </p>
-            <p className="font-mono text-lg">{selectedDate.toString()}</p>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Timestamp Formats */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Clock className="h-5 w-5" />
-            Discord Timestamp Formats
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-3">
-            {timestampFormats.map((format) => {
-              const discordFormat = `<t:${timestamp}:${format.style}>`;
-              const preview = getFormattedExample(format);
-
-              return (
-                <Card
-                  key={format.style}
-                  className="cursor-pointer transition-all hover:scale-[1.01] hover:shadow-md"
-                  onClick={() => copyToClipboard(discordFormat)}
-                >
-                  <CardContent className="p-4">
-                    <div className="flex items-center justify-between gap-4">
-                      <div className="flex-1">
-                        <div className="mb-1 flex items-center gap-2">
-                          <h3 className="font-semibold">{format.format}</h3>
-                          <Badge variant="outline" className="text-xs">
-                            {format.style}
-                          </Badge>
-                        </div>
-                        <p className="mb-2 text-muted-foreground text-sm">
-                          {format.description}
-                        </p>
-                        <div className="flex items-center gap-4">
-                          <code className="rounded bg-muted px-2 py-1 text-sm">
-                            {discordFormat}
-                          </code>
-                          <span className="text-muted-foreground text-sm">
-                            →
-                          </span>
-                          <span className="font-medium text-sm">{preview}</span>
-                        </div>
-                      </div>
-                      <Button size="sm" variant="ghost">
-                        <Copy className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
-
-          <div className="mt-6 rounded-lg bg-muted p-4">
-            <h4 className="mb-2 font-semibold">How to use:</h4>
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-base">How to use</CardTitle>
+          </CardHeader>
+          <CardContent>
             <ol className="list-inside list-decimal space-y-1 text-muted-foreground text-sm">
               <li>Select your desired date and time above</li>
               <li>Click on any format to copy the Discord timestamp</li>
@@ -335,9 +287,65 @@ export function TimestampGenerator() {
                 timezone
               </li>
             </ol>
-          </div>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Right Column - Timestamp Formats */}
+      <div className="space-y-6">
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Clock className="h-5 w-5" />
+              Discord Timestamp Formats
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-2">
+              {timestampFormats.map((format) => {
+                const discordFormat = `<t:${timestamp}:${format.style}>`;
+                const preview = getFormattedExample(format);
+
+                return (
+                  <Card
+                    key={format.style}
+                    className="cursor-pointer transition-all hover:scale-[1.01] hover:shadow-md py-0"
+                    onClick={() => copyToClipboard(discordFormat)}
+                  >
+                    <CardContent className="p-2">
+                      <div className="flex items-center justify-between gap-3">
+                        <div className="flex-1">
+                          <div className="mb-1 flex items-center gap-2">
+                            <h3 className="font-semibold text-sm">{format.format}</h3>
+                            <Badge variant="outline" className="text-xs">
+                              {format.style}
+                            </Badge>
+                          </div>
+                          <p className="mb-1 text-muted-foreground text-xs">
+                            {format.description}
+                          </p>
+                          <div className="flex items-center gap-3">
+                            <code className="rounded bg-muted px-2 py-1 text-xs">
+                              {discordFormat}
+                            </code>
+                            <span className="text-muted-foreground text-xs">
+                              →
+                            </span>
+                            <span className="font-medium text-xs">{preview}</span>
+                          </div>
+                        </div>
+                        <Button size="sm" variant="ghost" className="h-8 w-8 p-0">
+                          <Copy className="h-3 w-3" />
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }
