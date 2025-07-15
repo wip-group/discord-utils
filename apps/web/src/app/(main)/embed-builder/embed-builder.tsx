@@ -205,7 +205,7 @@ export function EmbedBuilder() {
         </CardHeader>
         <CardContent>
           <Tabs value={activeTab} onValueChange={setActiveTab}>
-            <TabsList className="grid w-full grid-cols-4">
+            <TabsList className="grid w-full grid-cols-4 -mt-2 mb-2">
               <TabsTrigger value="general">General</TabsTrigger>
               <TabsTrigger value="author">Author</TabsTrigger>
               <TabsTrigger value="images">Images</TabsTrigger>
