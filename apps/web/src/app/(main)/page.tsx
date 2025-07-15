@@ -102,7 +102,7 @@ export default async function Home() {
             const IconComponent = tool.icon;
             return (
               <Link key={tool.href} href={tool.href}>
-                <Card className="group relative h-full overflow-hidden border border-border/50 bg-background/50 transition-all duration-300 hover:-translate-y-1 hover:border-primary/20 hover:bg-background/80 hover:shadow-lg">
+                <Card className="group relative h-full overflow-hidden border p-0 border-border/50 bg-background/50 transition-all duration-300 hover:-translate-y-1 hover:border-primary/20 hover:bg-background/80 hover:shadow-lg">
                   <CardHeader className="p-6">
                     <div className="mb-4 flex items-center gap-3">
                       <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">

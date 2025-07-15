@@ -8,7 +8,7 @@ export const Footer = () => {
         © {new Date().getFullYear()} {env.NEXT_PUBLIC_HOSTNAME}. A <Link href="https://wip.group" className="no-underline hover:underline hover:underline-offset-4" target="_blank">WIP Group, LLC</Link> company.
       </p>
       <div className="mt-2 flex justify-center gap-6 text-white/30">
-        <Link
+        {/* <Link
           href="/privacy"
           className="px-2 text-sm text-white/30 underline underline-offset-4 hover:no-underline"
         >
@@ -19,12 +19,21 @@ export const Footer = () => {
           className="px-2 text-sm underline underline-offset-4 hover:no-underline"
         >
           Terms of Service
-        </Link>
+        </Link> */}
         <Link
           href={env.NEXT_PUBLIC_DISCORD_INVITE}
+          target="_blank"
           className="px-2 text-sm underline underline-offset-4 hover:no-underline"
         >
-          Join our Discord
+          Join Discord
+        </Link>
+
+        <Link
+          href="https://discordservers.gg"
+          target="_blank"
+          className="px-2 text-sm underline underline-offset-4 hover:no-underline"
+        >
+          DiscordServers.gg
         </Link>
       </div>
     </section>
