@@ -553,14 +553,13 @@ export function BotInviteGenerator() {
                   className="font-mono text-xs"
                 />
                 <div className="flex gap-2">
-                  <Button onClick={copyOAuthUrl} size="sm" variant="outline" className="flex-1">
+                  <Button onClick={copyOAuthUrl} size="sm" className="flex-1">
                     <Copy className="mr-2 h-4 w-4" />
                     Copy
                   </Button>
                   <Button
                     onClick={() => window.open(generateOAuthUrl(), "_blank")}
                     size="sm"
-                    variant="outline"
                     className="flex-1"
                   >
                     <ExternalLink className="mr-2 h-4 w-4" />

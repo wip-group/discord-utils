@@ -401,7 +401,7 @@ export function EmbedBuilder() {
                 <p className="text-muted-foreground text-sm">
                   {embed.fields.length}/25 fields
                 </p>
-                <Button onClick={addField} size="sm" variant="outline">
+                <Button onClick={addField} size="sm">
                   <Plus className="mr-1 h-4 w-4" />
                   Add Field
                 </Button>
@@ -458,7 +458,7 @@ export function EmbedBuilder() {
               <Copy className="mr-2 h-4 w-4" />
               Copy Code
             </Button>
-            <Button onClick={downloadCode} variant="outline" className="flex-1">
+            <Button onClick={downloadCode} className="flex-1">
               <Download className="mr-2 h-4 w-4" />
               Download
             </Button>

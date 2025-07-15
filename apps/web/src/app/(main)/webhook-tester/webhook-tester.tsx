@@ -330,7 +330,7 @@ export function WebhookTester() {
           </CardHeader>
           <CardContent>
             <Tabs value={activeTab} onValueChange={setActiveTab}>
-              <TabsList className="grid w-full grid-cols-2">
+              <TabsList className="grid w-full grid-cols-2 -mt-2 mb-2">
                 <TabsTrigger value="simple">Simple</TabsTrigger>
                 <TabsTrigger value="embed">Embed</TabsTrigger>
               </TabsList>

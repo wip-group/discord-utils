@@ -257,10 +257,10 @@ export function TimestampGenerator() {
                   onChange={(e) => handleTimestampChange(e.target.value)}
                   placeholder="1618934400"
                 />
-                <Button onClick={setToNow} variant="outline">
-                  <RefreshCw className="mr-2 h-4 w-4" />
-                  Now
-                </Button>
+                              <Button onClick={setToNow}>
+                <RefreshCw className="mr-2 h-4 w-4" />
+                Now
+              </Button>
               </div>
             </div>
 

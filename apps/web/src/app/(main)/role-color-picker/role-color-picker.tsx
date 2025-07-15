@@ -94,7 +94,6 @@ export function RoleColorPicker() {
           <div className="flex gap-2">
             <Button 
               onClick={() => copyToClipboard(selectedColor.hex)}
-              variant="outline"
               size="sm"
             >
               <Copy className="h-4 w-4 mr-2" />
@@ -102,7 +101,6 @@ export function RoleColorPicker() {
             </Button>
             <Button 
               onClick={() => copyToClipboard(selectedColor.rgb)}
-              variant="outline"
               size="sm"
             >
               <Copy className="h-4 w-4 mr-2" />
