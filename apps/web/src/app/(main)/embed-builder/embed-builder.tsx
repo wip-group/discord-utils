@@ -194,7 +194,7 @@ export function EmbedBuilder() {
     embed.fields.some((f) => f.name || f.value);
 
   return (
-    <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+    <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 items-start">
       {/* Editor */}
       <Card>
         <CardHeader>
