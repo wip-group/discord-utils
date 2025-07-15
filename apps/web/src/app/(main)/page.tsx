@@ -90,8 +90,7 @@ export default async function Home() {
             <h1 className="font-bold text-4xl tracking-tight">Discord Utils</h1>
           </div>
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-            Community powered Discord utilities for developers, server owners
-            and members.
+            The comprehensive toolkit for Discord communities.
           </p>
         </div>
       </div>
