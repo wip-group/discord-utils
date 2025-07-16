@@ -28,8 +28,9 @@ const exampleTexts = {
 ~~Strikethrough~~
 __Underline__
 
-> This is a blockquote
+> This is a blockquote2
 > It can span multiple lines
+> And continue even more
 
 ||This is a spoiler||`,
   lists: `**Unordered List:**
@@ -158,10 +159,13 @@ export function MarkdownPreview() {
       '<code class="bg-gray-800 px-1 py-0.5 rounded text-sm">$1</code>',
     );
 
-    // Blockquotes
+    // Blockquotes - handle consecutive ones as single block
     html = html.replace(
-      /^> (.+)$/gm,
-      '<blockquote class="border-l-4 border-gray-600 pl-3 my-2 text-gray-300">$1</blockquote>',
+      /(^&gt; .+$(\n&gt; .+$)*)/gm,
+      (match) => {
+        const lines = match.split("\n").map((line) => line.replace(/^&gt; /, ""));
+        return `<div class="border-l-4 border-gray-600 pl-3 my-2 text-gray-300">${lines.join("<br>")}</div>`;
+      },
     );
 
     // Links
@@ -189,7 +193,7 @@ export function MarkdownPreview() {
     html = html.replace(/^\d+\. (.+)$/gm, '<li class="ml-4">$1</li>');
     html = html.replace(/^ {2}- (.+)$/gm, '<li class="ml-8">◦ $1</li>');
 
-    // Line breaks
+    // Line breaks - do this last to avoid interfering with other patterns
     html = html.replace(/\n/g, "<br>");
 
     return html;
