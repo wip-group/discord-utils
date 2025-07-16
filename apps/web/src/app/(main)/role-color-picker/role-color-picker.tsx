@@ -77,13 +77,13 @@ export function RoleColorPicker() {
           
           <div className="space-y-2">
             <Label>Selected Color</Label>
-            <div className="flex items-center gap-3 p-3 border rounded-lg bg-gray-50 dark:bg-gray-900">
+            <div className="flex items-center gap-3 p-4 border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-xl bg-gradient-to-r from-gray-50/50 to-gray-100/50 dark:from-gray-900/50 dark:to-gray-800/50 backdrop-blur-sm">
               <div 
-                className="w-8 h-8 rounded-full border-2 border-gray-300"
+                className="w-10 h-10 rounded-full border-4 border-white dark:border-gray-800 shadow-lg ring-2 ring-gray-200 dark:ring-gray-700"
                 style={{ backgroundColor: selectedColor.hex }}
               />
               <div>
-                <div className="font-medium">{selectedColor.name}</div>
+                <div className="font-semibold text-gray-900 dark:text-gray-100">{selectedColor.name}</div>
                 <div className="text-sm text-muted-foreground">
                   {selectedColor.hex} • RGB({selectedColor.rgb})
                 </div>
@@ -121,13 +121,13 @@ export function RoleColorPicker() {
         <CardContent>
           <div className="space-y-4">
             {/* Discord-like role preview */}
-            <div className="border rounded-lg p-4 bg-gray-50 dark:bg-gray-900">
-              <div className="flex items-center gap-2">
+            <div className="border-2 border-gray-200 dark:border-gray-700 rounded-xl p-4 bg-gradient-to-br from-gray-50/80 to-gray-100/80 dark:from-gray-900/80 dark:to-gray-800/80 backdrop-blur-sm shadow-sm">
+              <div className="flex items-center gap-3">
                 <div 
-                  className="w-4 h-4 rounded-full"
+                  className="w-5 h-5 rounded-full shadow-md ring-2 ring-white dark:ring-gray-800"
                   style={{ backgroundColor: selectedColor.hex }}
                 />
-                <span className="font-medium">
+                <span className="font-semibold text-gray-900 dark:text-gray-100">
                   {roleName || "Role Name"}
                 </span>
               </div>
@@ -136,23 +136,23 @@ export function RoleColorPicker() {
             {/* Color palette grid */}
             <div className="space-y-3">
               <Label>Available Discord Colors</Label>
-              <div className="grid grid-cols-6 gap-2">
+              <div className="grid grid-cols-6 gap-3">
                 {discordColors.map((color) => (
                   <button
                     key={color.hex}
                     onClick={() => setSelectedColor(color)}
-                    className={`relative p-2 rounded-lg transition-all hover:scale-105 ${
+                    className={`relative p-3 rounded-xl transition-all duration-200 hover:scale-105 hover:shadow-md ${
                       selectedColor.hex === color.hex 
-                        ? "border-blue-500 ring-2 ring-blue-200" 
-                        : "border-gray-200 hover:border-gray-300 dark:border-gray-700 dark:hover:border-gray-600"
+                        ? "border-2 border-blue-500 ring-2 ring-blue-200 shadow-lg" 
+                        : "border-2 border-gray-200 hover:border-gray-300 dark:border-gray-700 dark:hover:border-gray-600 hover:shadow-sm"
                     }`}
                     title={`${color.name} - ${color.hex}`}
                   >
                     <div 
-                      className="w-full h-8 rounded"
+                      className="w-full h-10 rounded-lg shadow-inner"
                       style={{ backgroundColor: color.hex }}
                     />
-                    <div className="text-xs mt-1 font-medium truncate">
+                    <div className="text-xs mt-2 font-medium truncate text-gray-700 dark:text-gray-300">
                       {color.name}
                     </div>
                   </button>
