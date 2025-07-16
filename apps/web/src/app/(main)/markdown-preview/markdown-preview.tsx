@@ -169,10 +169,17 @@ export function MarkdownPreview() {
     );
 
     // Links
+    // Masked links with <> around URL
+    html = html.replace(
+      /\[([^\]]+)\]\(&lt;([^&]+)&gt;\)/g,
+      '<a href="$2" class="text-blue-400 hover:underline" target="_blank">$1</a>',
+    );
+    // Normal markdown links
     html = html.replace(
       /\[([^\]]+)\]\(([^)]+)\)/g,
       '<a href="$2" class="text-blue-400 hover:underline" target="_blank">$1</a>',
     );
+    // Auto links
     html = html.replace(
       /&lt;(https?:\/\/[^\s&]+)&gt;/g,
       '<a href="$1" class="text-blue-400 hover:underline" target="_blank">$1</a>',
