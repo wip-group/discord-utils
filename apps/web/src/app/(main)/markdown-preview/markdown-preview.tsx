@@ -28,7 +28,7 @@ const exampleTexts = {
 ~~Strikethrough~~
 __Underline__
 
-> This is a blockquote2
+> This is a blockquote
 > It can span multiple lines
 > And continue even more
 
