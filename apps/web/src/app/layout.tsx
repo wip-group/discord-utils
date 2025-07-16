@@ -18,8 +18,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Discord Utils - Essential Tools for Discord Communities",
-  description: "Essential tools for Discord server owners and developers. Build embeds, generate timestamps, preview markdown, and more.",
+  title: "Discord Utils | The toolkit for Discord communities",
+  description: "Essential tools for Discord server owners and developers. Build embeds, generate timestamps, preview markdown, test webhooks, and more.",
 };
 
 export default async function RootLayout({
