@@ -1,6 +1,13 @@
-# DiscordUtils
+# Discord Utils
+Discord Utils is a comprehensive toolkit for Discord communities.
 
-A collection of Discord utilities useful for Developers, and server managers alike.
+This collection of utils aims to serve all community stakeholders, from owners, to members and developers. 
+
+This is a free, open-source sister-site to [DiscordServers.gg](https://DiscordServers.gg).
+
+If you want to support, or chat with the team, come join our Discord:
+
+[![Discord Banner](https://discord.com/api/guilds/1375167498093203536/widget.png?style=banner2)](https://discord.gg/nN6BSs7gqW)
 
 ## Tech Stack
 
@@ -16,17 +23,14 @@ DiscordUtils leverages a powerful set of tools and libraries to deliver a seamle
 - **Mongoose** – TypeScript-first ORM
 - **better-auth** – Authentication framework for TypeScript
 - **Biome** – Linting and formatting
-- **...** – Various other libraries such as Zod
-
----
 
 ## Getting Started
 
-Follow these steps to run DiscordUtils locally:
+Follow these steps to run locally and start contributing.
 
 ### Prerequisites
 
-Make sure you have Bun installed.
+- Bun (https://bun.com/)
 
 ### Project Setup
 
@@ -37,7 +41,7 @@ Make sure you have Bun installed.
 
 2. Open in your code editor
 
-3. Setup `/apps/web/.env` and `/apps/api/.env` using their respective `.env.example` files as reference.
+3. Setup `/apps/web/.env` and `/apps/api/.env` using their respective `.env.example` files as reference
 
 4. Install dependencies and run the app
     ```bash
@@ -46,12 +50,4 @@ Make sure you have Bun installed.
     ```
 
 5. Open https://localhost:3000. The api is hosted on https://localhost:3001.
-
-### Development Notes
-
-- On daily development, just use:
-    ```bash
-    bun run dev
-    ```
-- Re-run `bun i` when new dependencies are added.
 
