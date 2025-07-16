@@ -11,7 +11,7 @@ If you want to support, or chat with the team, come join our Discord:
 
 ## Tech Stack
 
-DiscordUtils leverages a powerful set of tools and libraries to deliver a seamless experience:
+Discord Utils leverages a powerful set of tools and libraries to deliver a seamless experience:
 
 - **Next.js** – ReactJS Framework that everyone and their mother knows
 - **TurboRepo** – Monorepo support for scalable code management by Vercel
