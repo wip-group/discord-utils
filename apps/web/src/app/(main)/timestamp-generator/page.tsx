@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { TimestampGenerator } from "./timestamp-generator";
 
 export const metadata: Metadata = {
-  title: "Discord Timestamp Generator - Discord Utils",
+  title: "Discord Timestamp Generator | Discord Utils",
   description:
     "Generate Discord timestamps in various formats. Create relative time displays and formatted dates for Discord messages.",
   keywords: [

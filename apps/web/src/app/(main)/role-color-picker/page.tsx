@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { RoleColorPicker } from "./role-color-picker";
 
 export const metadata: Metadata = {
-  title: "Discord Role Color Picker - Discord Utils",
+  title: "Discord Role Color Picker | Discord Utils",
   description:
     "Design Discord role colors with custom palettes and preview. Choose from all available Discord colors and preview your role design.",
   keywords: [

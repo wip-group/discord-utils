@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { EmbedBuilder } from "./embed-builder";
 
 export const metadata: Metadata = {
-  title: "Discord Embed Builder - Discord Utils",
+  title: "Discord Embed Builder | Discord Utils",
   description:
     "Create rich Discord embeds with live preview. Design custom embeds with titles, descriptions, fields, images, and more.",
   keywords: [
