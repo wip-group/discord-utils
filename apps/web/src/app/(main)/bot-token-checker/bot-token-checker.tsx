@@ -7,8 +7,10 @@ import { Card } from "@repo/ui/components/card";
 import { toast } from "sonner";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@repo/ui/components/tabs";
 import { Bot, Shield, AlertTriangle } from "lucide-react";
+import { useAnalytics } from "@/lib/analytics";
 
 export function BotTokenChecker() {
+  const { trackToolUse } = useAnalytics();
   const [botToken, setBotToken] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
   const [botInfo, setBotInfo] = useState<any>(null);
@@ -31,6 +33,7 @@ export function BotTokenChecker() {
       if (response.ok) {
         const data = await response.json();
         setBotInfo(data);
+        trackToolUse("bot-token-checker");
       } else {
         setBotInfo(null);
         toast.error("Invalid bot token");

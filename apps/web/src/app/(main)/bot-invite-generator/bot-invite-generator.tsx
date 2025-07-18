@@ -26,6 +26,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { useAnalytics } from "@/lib/analytics";
 
 interface Permission {
   name: string;
@@ -260,6 +261,7 @@ const scopes = [
 ];
 
 export function BotInviteGenerator() {
+  const { trackToolUse } = useAnalytics();
   const [selectedPermissions, setSelectedPermissions] = useState<Set<string>>(new Set());
   const [clientId, setClientId] = useState("");
   const [selectedScopes, setSelectedScopes] = useState<Set<string>>(new Set(["bot"]));
@@ -322,12 +324,14 @@ export function BotInviteGenerator() {
     const url = generateOAuthUrl();
     navigator.clipboard.writeText(url);
     toast.success("OAuth URL copied to clipboard!");
+    trackToolUse("bot-invite-generator");
   };
 
   const copyPermissions = () => {
     const permissions = calculatePermissions();
     navigator.clipboard.writeText(permissions.toString());
     toast.success("Permission integer copied to clipboard!");
+    trackToolUse("bot-invite-generator");
   };
 
   const getRequires2FAPermissions = (): string[] => {

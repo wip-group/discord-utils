@@ -33,6 +33,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { useAnalytics } from "@/lib/analytics";
 
 interface WebhookResponse {
   status: number;
@@ -136,6 +137,7 @@ const examplePayloads = {
 };
 
 export function WebhookTester() {
+  const { trackToolUse } = useAnalytics();
   const [webhookUrl, setWebhookUrl] = useState("");
   const [payload, setPayload] = useState<TestPayload>(defaultPayload);
   const [isLoading, setIsLoading] = useState(false);
@@ -203,6 +205,7 @@ export function WebhookTester() {
 
       if (response.ok) {
         toast.success("Webhook sent successfully!");
+        trackToolUse("webhook-tester");
       } else {
         toast.error(`Webhook failed: ${response.status} ${response.statusText}`);
       }

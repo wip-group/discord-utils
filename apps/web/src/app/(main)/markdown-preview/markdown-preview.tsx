@@ -20,6 +20,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { Input } from "@repo/ui/components/input";
 import { Label } from "@repo/ui/components/label";
+import { useAnalytics } from "@/lib/analytics";
 
 const exampleTexts = {
   basic: `**Bold text**
@@ -82,6 +83,7 @@ def greet(name):
 };
 
 export function MarkdownPreview() {
+  const { trackToolUse } = useAnalytics();
   const [text, setText] = useState(exampleTexts.basic);
   const [activeTab, setActiveTab] = useState("preview");
   const [customName, setCustomName] = useState("Username");
@@ -90,6 +92,7 @@ export function MarkdownPreview() {
   const copyText = () => {
     navigator.clipboard.writeText(text);
     toast.success("Text copied to clipboard!");
+    trackToolUse("markdown-preview");
   };
 
   const loadExample = (example: keyof typeof exampleTexts) => {

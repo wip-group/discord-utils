@@ -13,6 +13,7 @@ import { Label } from "@repo/ui/components/label";
 import { Calendar, Clock, Copy, RefreshCw } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
+import { useAnalytics } from "@/lib/analytics";
 
 interface TimestampFormat {
   style: string;
@@ -67,6 +68,7 @@ const timestampFormats: TimestampFormat[] = [
 ];
 
 export function TimestampGenerator() {
+  const { trackToolUse } = useAnalytics();
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [dateInput, setDateInput] = useState("");
   const [timeInput, setTimeInput] = useState("");
@@ -122,6 +124,7 @@ export function TimestampGenerator() {
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
     toast.success("Copied to clipboard!");
+    trackToolUse("timestamp-generator");
   };
 
   const getRelativeTime = (date: Date) => {

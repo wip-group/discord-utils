@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { authClient } from "@/lib/auth-client";
+import { AnalyticsProvider } from "@/lib/analytics";
 import { ThemeProvider } from "./theme-provider";
 
 function makeQueryClient() {
@@ -55,10 +56,12 @@ export default function Providers({ children }: { children: React.ReactNode }) {
         Link={Link}
       >
         <QueryClientProvider client={queryClient}>
-          <NuqsAdapter>{children}</NuqsAdapter>
+          <AnalyticsProvider>
+            <NuqsAdapter>{children}</NuqsAdapter>
 
-          {/* <ReactQueryDevtools />is */}
-          <Toaster richColors />
+            {/* <ReactQueryDevtools />is */}
+            <Toaster richColors />
+          </AnalyticsProvider>
         </QueryClientProvider>
       </AuthUIProvider>
     </ThemeProvider>

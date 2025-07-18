@@ -8,11 +8,19 @@ import { Avatar, AvatarImage, AvatarFallback } from "@repo/ui/components/avatar"
 import { Card } from "@repo/ui/components/card";
 import { toast } from "sonner";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@repo/ui/components/tabs";
+import { useAnalytics } from "@/lib/analytics";
 
 export function UserInfo() {
+  const { trackToolUse } = useAnalytics();
   const [userId, setUserId] = useState<string>("");
   const [searchId, setSearchId] = useState<string>("");
   const { data: userInfo, isLoading, error } = useUserInfo(searchId);
+
+  React.useEffect(() => {
+    if (userInfo && searchId && !error) {
+      trackToolUse("user-info");
+    }
+  }, [userInfo, searchId, error, trackToolUse]);
 
   const handleSearch = () => {
     if (!userId.trim()) {

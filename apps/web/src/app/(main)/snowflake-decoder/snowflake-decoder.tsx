@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
+import { useAnalytics } from "@/lib/analytics";
 
 interface SnowflakeInfo {
   snowflake: string;
@@ -42,6 +43,7 @@ const DISCORD_EPOCH = 1420070400000; // January 1, 2015
 export function SnowflakeDecoder() {
   const [input, setInput] = useState("");
   const [decodedInfo, setDecodedInfo] = useState<SnowflakeInfo | null>(null);
+  const { trackToolUse } = useAnalytics();
 
   const validateSnowflake = (snowflake: string): boolean => {
     // Check if it's a valid 17-19 digit number
@@ -94,6 +96,7 @@ export function SnowflakeDecoder() {
     if (decoded) {
       setDecodedInfo(decoded);
       toast.success("Snowflake decoded successfully!");
+      trackToolUse("snowflake-decoder");
     } else {
       toast.error("Invalid snowflake ID. Please enter a valid 17-19 digit number.");
     }

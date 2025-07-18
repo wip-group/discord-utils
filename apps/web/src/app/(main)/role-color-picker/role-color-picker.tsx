@@ -7,6 +7,7 @@ import { Label } from "@repo/ui/components/label";
 import { Button } from "@repo/ui/components/button";
 import { Copy, Palette, Paintbrush2 } from "lucide-react";
 import { toast } from "sonner";
+import { useAnalytics } from "@/lib/analytics";
 
 // Discord color palette - all available colors
 const discordColors = [
@@ -45,6 +46,7 @@ const discordColors = [
 ];
 
 export function RoleColorPicker() {
+  const { trackToolUse } = useAnalytics();
   const [roleName, setRoleName] = useState("");
   const [selectedColor, setSelectedColor] = useState(discordColors[0]);
   const [customColor, setCustomColor] = useState("#FF5733");
@@ -56,6 +58,7 @@ export function RoleColorPicker() {
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
     toast.success("Copied to clipboard!");
+    trackToolUse("role-color-picker");
   };
 
   const getCurrentColor = () => {

@@ -21,6 +21,7 @@ import { Textarea } from "@repo/ui/components/textarea";
 import { Code, Copy, Download, Eye, Plus, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { useAnalytics } from "@/lib/analytics";
 
 interface EmbedField {
   name: string;
@@ -101,6 +102,7 @@ const defaultEmbed: EmbedData = {
 };
 
 export function EmbedBuilder() {
+  const { trackToolUse } = useAnalytics();
   const [embed, setEmbed] = useState<EmbedData>(defaultEmbed);
   const [activeTab, setActiveTab] = useState("general");
 
@@ -173,6 +175,7 @@ export function EmbedBuilder() {
   const copyCode = () => {
     navigator.clipboard.writeText(generateCode());
     toast.success("Code copied to clipboard!");
+    trackToolUse("embed-builder");
   };
 
   const downloadCode = () => {
@@ -184,6 +187,7 @@ export function EmbedBuilder() {
     a.click();
     URL.revokeObjectURL(url);
     toast.success("Code downloaded!");
+    trackToolUse("embed-builder");
   };
 
   const hasContent =
