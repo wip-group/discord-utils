@@ -37,7 +37,7 @@ export default async function RootLayout({
       <head>
         <script
           defer
-          data-domain={env.NEXT_PUBLIC_HOSTNAME}
+          data-domain={"discordutils.com"}
           src="https://plausible.wip.group/js/script.js"
         />
       </head>
