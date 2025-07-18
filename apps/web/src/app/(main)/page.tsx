@@ -25,7 +25,7 @@ const featuredTools = [
   },
   {
     title: "Bot Invite Generator",
-    description: "Generate Discord bot invite links with custom permissions",
+    description: "Generate bot invite URL with permissions",
     icon: Calculator,
     href: "/bot-invite-generator",
   },
@@ -61,7 +61,7 @@ const featuredTools = [
   },
   {
     title: "Bot Token Checker",
-    description: "Verify your Discord bot token and get bot information",
+    description: "Get bot information from a token",
     icon: Calculator, // You may want to use a more appropriate icon
     href: "/bot-token-checker",
   },

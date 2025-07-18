@@ -5,7 +5,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@repo
 import { Input } from "@repo/ui/components/input";
 import { Label } from "@repo/ui/components/label";
 import { Button } from "@repo/ui/components/button";
-import { Copy, Palette } from "lucide-react";
+import { Copy, Palette, Paintbrush2 } from "lucide-react";
+import { toast } from "sonner";
 
 // Discord color palette - all available colors
 const discordColors = [
@@ -46,122 +47,282 @@ const discordColors = [
 export function RoleColorPicker() {
   const [roleName, setRoleName] = useState("");
   const [selectedColor, setSelectedColor] = useState(discordColors[0]);
+  const [customColor, setCustomColor] = useState("#FF5733");
+  const [useCustom, setUseCustom] = useState(false);
+  const [useGradient, setUseGradient] = useState(false);
+  const [gradientColor1, setGradientColor1] = useState("#FF5733");
+  const [gradientColor2, setGradientColor2] = useState("#33B5FF");
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
+    toast.success("Copied to clipboard!");
+  };
+
+  const getCurrentColor = () => {
+    if (useGradient) {
+      return `linear-gradient(135deg, ${gradientColor1}, ${gradientColor2})`;
+    }
+    return useCustom ? customColor : selectedColor.hex;
+  };
+
+  const hexToRgb = (hex: string) => {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}` : "";
   };
 
   return (
-    <div className="grid gap-6 lg:grid-cols-2 items-start">
-      {/* Input Section */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Palette className="h-5 w-5" />
-            Role Configuration
-          </CardTitle>
-          <CardDescription>
-            Enter your role name and select a color to preview how it will look in Discord.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="role-name">Role Name</Label>
-            <Input
-              id="role-name"
-              placeholder="Enter role name..."
-              value={roleName}
-              onChange={(e) => setRoleName(e.target.value)}
-            />
-          </div>
-          
-          <div className="space-y-2">
-            <Label>Selected Color</Label>
-            <div className="flex items-center gap-3 p-3 border rounded-lg bg-gray-50 dark:bg-gray-900">
-              <div 
-                className="w-8 h-8 rounded-full border-2 border-gray-300"
-                style={{ backgroundColor: selectedColor.hex }}
+    <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 items-start">
+      {/* Configuration Section */}
+      <div className="space-y-6">
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Palette className="h-5 w-5" />
+              Role Configuration
+            </CardTitle>
+            <CardDescription>
+              Configure your Discord role name and select a color to preview how it will appear.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="space-y-2">
+              <Label htmlFor="role-name">Role Name</Label>
+              <Input
+                id="role-name"
+                placeholder="Enter role name..."
+                value={roleName}
+                onChange={(e) => setRoleName(e.target.value)}
               />
-              <div>
-                <div className="font-medium">{selectedColor.name}</div>
-                <div className="text-sm text-muted-foreground">
-                  {selectedColor.hex} • RGB({selectedColor.rgb})
+            </div>
+            
+            <div className="space-y-3">
+              <Label>Color Type</Label>
+              <div className="flex gap-2">
+                <Button 
+                  variant={!useCustom && !useGradient ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => {
+                    setUseCustom(false);
+                    setUseGradient(false);
+                  }}
+                >
+                  Discord Palette
+                </Button>
+                <Button 
+                  variant={useCustom && !useGradient ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => {
+                    setUseCustom(true);
+                    setUseGradient(false);
+                  }}
+                >
+                  Custom Color
+                </Button>
+                <Button 
+                  variant={useGradient ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => {
+                    setUseCustom(false);
+                    setUseGradient(true);
+                  }}
+                >
+                  Gradient
+                </Button>
+              </div>
+            </div>
+
+            {useCustom && !useGradient && (
+              <div className="space-y-2">
+                <Label htmlFor="custom-color">Custom Color</Label>
+                <div className="flex gap-2">
+                  <Input
+                    id="custom-color"
+                    type="color"
+                    value={customColor}
+                    onChange={(e) => setCustomColor(e.target.value)}
+                    className="w-16 h-10 p-1 rounded-lg"
+                  />
+                  <Input
+                    value={customColor}
+                    onChange={(e) => setCustomColor(e.target.value)}
+                    placeholder="#FF5733"
+                    className="flex-1"
+                  />
                 </div>
               </div>
-            </div>
-          </div>
+            )}
 
-          <div className="flex gap-2">
-            <Button 
-              onClick={() => copyToClipboard(selectedColor.hex)}
-              size="sm"
-            >
-              <Copy className="h-4 w-4 mr-2" />
-              Copy HEX
-            </Button>
-            <Button 
-              onClick={() => copyToClipboard(selectedColor.rgb)}
-              size="sm"
-            >
-              <Copy className="h-4 w-4 mr-2" />
-              Copy RGB
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Preview Section */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Role Preview</CardTitle>
-          <CardDescription>
-            See how your role will appear in Discord.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            {/* Discord-like role preview */}
-            <div className="border rounded-lg p-4 bg-gray-50 dark:bg-gray-900">
-              <div className="flex items-center gap-2">
-                <div 
-                  className="w-4 h-4 rounded-full"
-                  style={{ backgroundColor: selectedColor.hex }}
-                />
-                <span className="font-medium">
-                  {roleName || "Role Name"}
-                </span>
+            {useGradient && (
+              <div className="space-y-3">
+                <Label>Gradient Colors</Label>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="space-y-2">
+                    <Label className="text-sm">Start Color</Label>
+                    <div className="flex gap-2">
+                      <Input
+                        type="color"
+                        value={gradientColor1}
+                        onChange={(e) => setGradientColor1(e.target.value)}
+                        className="w-12 h-8 p-0 rounded"
+                      />
+                      <Input
+                        value={gradientColor1}
+                        onChange={(e) => setGradientColor1(e.target.value)}
+                        className="text-xs"
+                      />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <Label className="text-sm">End Color</Label>
+                    <div className="flex gap-2">
+                      <Input
+                        type="color"
+                        value={gradientColor2}
+                        onChange={(e) => setGradientColor2(e.target.value)}
+                        className="w-12 h-8 p-0 rounded"
+                      />
+                      <Input
+                        value={gradientColor2}
+                        onChange={(e) => setGradientColor2(e.target.value)}
+                        className="text-xs"
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
+            )}
+          </CardContent>
+        </Card>
 
-            {/* Color palette grid */}
-            <div className="space-y-3">
-              <Label>Available Discord Colors</Label>
-              <div className="grid grid-cols-6 gap-2">
+        {/* Discord Colors Palette */}
+        {!useCustom && !useGradient && (
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Paintbrush2 className="h-5 w-5" />
+                Discord Color Palette
+              </CardTitle>
+              <CardDescription>
+                Choose from Discord's available role colors.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-4 sm:grid-cols-6 gap-3">
                 {discordColors.map((color) => (
                   <button
                     key={color.hex}
                     onClick={() => setSelectedColor(color)}
-                    className={`relative p-2 rounded-lg transition-all hover:scale-105 ${
+                    className={`group relative p-2 rounded-lg transition-all duration-200 hover:scale-105 ${
                       selectedColor.hex === color.hex 
-                        ? "border-blue-500 ring-2 ring-blue-200" 
-                        : "border-gray-200 hover:border-gray-300 dark:border-gray-700 dark:hover:border-gray-600"
+                        ? "ring-2 ring-primary shadow-lg scale-105" 
+                        : "hover:shadow-md"
                     }`}
                     title={`${color.name} - ${color.hex}`}
                   >
                     <div 
-                      className="w-full h-8 rounded"
+                      className="w-full h-10 rounded-md shadow-sm border border-border"
                       style={{ backgroundColor: color.hex }}
                     />
-                    <div className="text-xs mt-1 font-medium truncate">
+                    <div className="text-xs mt-1.5 font-medium truncate text-center">
                       {color.name}
                     </div>
                   </button>
                 ))}
               </div>
+            </CardContent>
+          </Card>
+        )}
+      </div>
+
+      {/* Preview Section */}
+      <div className="space-y-6">
+        <Card>
+          <CardHeader>
+            <CardTitle>Color Information</CardTitle>
+            <CardDescription>
+              Current color details and copy options.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="flex items-center gap-3 p-4 rounded-xl bg-muted/50">
+              <div 
+                className="w-16 h-16 rounded-lg shadow-lg border border-border"
+                style={{ 
+                  background: getCurrentColor(),
+                }}
+              />
+              <div className="flex-1">
+                <div className="font-semibold text-lg">
+                  {useGradient ? "Custom Gradient" : useCustom ? "Custom Color" : selectedColor.name}
+                </div>
+                <div className="text-sm text-muted-foreground mt-1">
+                  {useGradient 
+                    ? `${gradientColor1} → ${gradientColor2}`
+                    : useCustom 
+                      ? `${customColor} • RGB(${hexToRgb(customColor)})`
+                      : `${selectedColor.hex} • RGB(${selectedColor.rgb})`
+                  }
+                </div>
+              </div>
             </div>
-          </div>
-        </CardContent>
-      </Card>
+
+            <div className="grid grid-cols-2 gap-2">
+              <Button 
+                onClick={() => copyToClipboard(useGradient ? `${gradientColor1},${gradientColor2}` : useCustom ? customColor : selectedColor.hex)}
+                size="sm"
+                className="w-full"
+              >
+                <Copy className="h-4 w-4 mr-2" />
+                Copy Hex
+              </Button>
+              {!useGradient && (
+                <Button 
+                  onClick={() => copyToClipboard(useCustom ? hexToRgb(customColor) : selectedColor.rgb)}
+                  size="sm"
+                  variant="outline"
+                  className="w-full"
+                >
+                  <Copy className="h-4 w-4 mr-2" />
+                  Copy RGB
+                </Button>
+              )}
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Discord Preview</CardTitle>
+            <CardDescription>
+              See how your role will appear in Discord's member list.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <Label>Member List Preview</Label>
+              <div className="bg-[#2f3136] rounded-lg p-4 space-y-3">
+                <div className="text-xs text-[#b9bbbe] uppercase font-semibold tracking-wide">
+                  {useGradient ? "Custom Gradient" : useCustom ? "Custom Color" : selectedColor.name} — 1
+                </div>
+                <div className="flex items-center gap-3 hover:bg-[#36393f] p-2 rounded transition-colors">
+                  <div className="w-8 h-8 rounded-full bg-indigo-500 flex-shrink-0" />
+                  <span 
+                    className="font-medium text-white"
+                    style={{ 
+                      background: useGradient ? getCurrentColor() : 'transparent',
+                      color: useGradient ? 'transparent' : getCurrentColor(),
+                      backgroundClip: useGradient ? 'text' : 'unset',
+                      WebkitBackgroundClip: useGradient ? 'text' : 'unset'
+                    }}
+                  >
+                    {roleName || "Example Role"}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 } 

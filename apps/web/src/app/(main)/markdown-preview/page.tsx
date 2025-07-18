@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { MarkdownPreview } from "./markdown-preview";
 
 export const metadata: Metadata = {
-  title: "Discord Markdown Preview - Discord Utils",
+  title: "Discord Markdown Preview | Discord Utils",
   description:
     "Preview Discord markdown formatting in real-time. Test bold, italic, strikethrough, code blocks, and more.",
   keywords: [

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { WebhookTester } from "./webhook-tester";
 
 export const metadata: Metadata = {
-  title: "Discord Webhook Tester - Discord Utils",
+  title: "Discord Webhook Tester | Discord Utils",
   description:
     "Test Discord webhooks with custom payloads. Send test messages, embeds, and analyze webhook responses.",
   keywords: [

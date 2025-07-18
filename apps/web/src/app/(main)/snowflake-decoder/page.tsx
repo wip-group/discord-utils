@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { SnowflakeDecoder } from "./snowflake-decoder";
 
 export const metadata: Metadata = {
-  title: "Discord Snowflake Decoder - Discord Utils",
+  title: "Discord Snowflake Decoder | Discord Utils",
   description:
     "Decode Discord snowflake IDs to timestamps, dates, and other information. Convert Discord IDs to readable timestamps.",
   keywords: [

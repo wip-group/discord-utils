@@ -30,6 +30,7 @@ __Underline__
 
 > This is a blockquote
 > It can span multiple lines
+> And continue even more
 
 ||This is a spoiler||`,
   lists: `**Unordered List:**
@@ -158,17 +159,27 @@ export function MarkdownPreview() {
       '<code class="bg-gray-800 px-1 py-0.5 rounded text-sm">$1</code>',
     );
 
-    // Blockquotes
+    // Blockquotes - handle consecutive ones as single block
     html = html.replace(
-      /^> (.+)$/gm,
-      '<blockquote class="border-l-4 border-gray-600 pl-3 my-2 text-gray-300">$1</blockquote>',
+      /(^&gt; .+$(\n&gt; .+$)*)/gm,
+      (match) => {
+        const lines = match.split("\n").map((line) => line.replace(/^&gt; /, ""));
+        return `<div class="border-l-4 border-gray-600 pl-3 my-2 text-gray-300">${lines.join("<br>")}</div>`;
+      },
     );
 
     // Links
+    // Masked links with <> around URL
+    html = html.replace(
+      /\[([^\]]+)\]\(&lt;([^&]+)&gt;\)/g,
+      '<a href="$2" class="text-blue-400 hover:underline" target="_blank">$1</a>',
+    );
+    // Normal markdown links
     html = html.replace(
       /\[([^\]]+)\]\(([^)]+)\)/g,
       '<a href="$2" class="text-blue-400 hover:underline" target="_blank">$1</a>',
     );
+    // Auto links
     html = html.replace(
       /&lt;(https?:\/\/[^\s&]+)&gt;/g,
       '<a href="$1" class="text-blue-400 hover:underline" target="_blank">$1</a>',
@@ -189,7 +200,7 @@ export function MarkdownPreview() {
     html = html.replace(/^\d+\. (.+)$/gm, '<li class="ml-4">$1</li>');
     html = html.replace(/^ {2}- (.+)$/gm, '<li class="ml-8">◦ $1</li>');
 
-    // Line breaks
+    // Line breaks - do this last to avoid interfering with other patterns
     html = html.replace(/\n/g, "<br>");
 
     return html;

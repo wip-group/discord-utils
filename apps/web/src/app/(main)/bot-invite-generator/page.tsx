@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { BotInviteGenerator } from "./bot-invite-generator";
 
 export const metadata: Metadata = {
-  title: "Discord Bot Invite Generator - Discord Utils",
+  title: "Discord Bot Invite Generator | Discord Utils",
   description:
     "Generate Discord bot invite links with custom permissions. Create OAuth URLs for your bot with the exact permissions it needs.",
   keywords: [
