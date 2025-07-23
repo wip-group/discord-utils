@@ -8,7 +8,7 @@ import { Textarea } from "@repo/ui/components/textarea";
 import { Label } from "@repo/ui/components/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@repo/ui/components/select";
 import { toast } from "sonner";
-import { ArrowUp, ArrowDown, Trash2, Plus, X } from "lucide-react";
+import { ArrowUp, ArrowDown, Trash2, Plus, X, Copy } from "lucide-react";
 
 const COMPONENT_TYPES = [
   { label: "Action Row", value: 1 },
@@ -280,7 +280,7 @@ export default function ComponentBuilder() {
                 className="font-mono border-blurple/20 text-base"
               />
               <Button onClick={copyJson} size="sm" className="mt-2 bg-blurple hover:bg-blurple/90 text-white rounded-lg px-4 py-2 flex gap-2 items-center">
-                <X className="w-4 h-4" /> Copy JSON
+                <Copy className="w-4 h-4" /> Copy JSON
               </Button>
             </div>
           </CardContent>
