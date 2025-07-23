@@ -8,6 +8,7 @@ import {
   AtSign,
   Clock,
   Copy,
+  Code2,
   FileText,
   Hash,
   ImageIcon,
@@ -74,6 +75,11 @@ const sidebarTools = [
     title: "Role Color Picker",
     icon: Palette,
     href: "/role-color-picker",
+  },
+  {
+    title: "Component Builder",
+    icon: Code2,
+    href: "/component-builder",
   },
 ];
 
